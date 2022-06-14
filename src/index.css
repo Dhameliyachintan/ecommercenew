@@ -11,3 +11,13 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+
+.contact_nav,.account-link span {
+  color: #ffffff;
+  margin-right: 10px;
+}
+
+span {
+  color: #fff;
+}
