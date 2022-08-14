@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Form, Formik, useFormik } from 'formik';
-import { signupAction } from '../Redux/Action/auth.Action';
+import { LoginAction, signupAction } from '../Redux/Action/auth.Action';
 
 function Logins(props) {
     const [userType, setUserType] = useState('Login')
@@ -13,6 +13,7 @@ function Logins(props) {
     const handleLogin = (values) => {
         // alert(JSON.stringify(values, null, 2));
         sessionStorage.setItem("user", "1234567")
+        dispatch(LoginAction(values))
 
     }
     const handlesignup = (values) => {
