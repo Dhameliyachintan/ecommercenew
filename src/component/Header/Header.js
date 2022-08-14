@@ -1,7 +1,9 @@
 import React from 'react';
 import { NavLink } from 'react-router-dom';
+import Alert from '../Alert/Alert';
 
 function Header(props) {
+
     return (
         <header className="header_section">
             <div className="header_top">
@@ -77,8 +79,13 @@ function Header(props) {
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink>
                                 </li>
+                                <li className="nav-item">
+                                    {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                    <NavLink exact to={"/Logins"} className="nav-link" href="Loginss.html">Logins</NavLink>
+                                </li>
                             </ul>
                         </div>
+                        <Alert />
                     </nav>
                 </div>
             </div>

@@ -9,19 +9,31 @@ import Home from './container/Home';
 import Testimonial from './container/Testimonial';
 import Product from './container/Product';
 import Why from './container/Why';
+import Logins from './container/Logins';
+import PublicRoute from './container/Route/PublicRoute';
+import PrivateRoute from './container/Route/PrivateRoute';
+import { Provider } from 'react-redux';
+import { store } from './Redux/Store';
+import { SnackbarProvider } from 'notistack';
 
 function App() {
+  // let store = Configreducer()
   return (
     <>
-      <Header />
-      <Switch>
-        <Route exact path={"/"} component={Home} />
-        <Route exact path={"/About"} component={About} />
-        <Route exact path={"/Testimonial"} component={Testimonial} />
-        <Route exact path={"/Product"} component={Product} />
-        <Route exact path={"/Why"} component={Why} />
-      </Switch>
-      <Footer />
+      <SnackbarProvider maxSnack={3}>
+        <Provider store={store}>
+          <Header />
+          <Switch>
+            <PublicRoute exact path={"/"} component={Home} />
+            <PublicRoute exact path={"/About"} component={About} />
+            <PrivateRoute exact path={"/Testimonial"} component={Testimonial} />
+            <PublicRoute exact path={"/Product"} component={Product} />
+            <PublicRoute exact path={"/Why"} component={Why} />
+            <PublicRoute restricted={false} exact path={"/Logins"} component={Logins} />
+          </Switch>
+        </Provider>
+        <Footer />
+      </SnackbarProvider>
     </>
   );
 }

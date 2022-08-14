@@ -1,18 +1,19 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom';
-import { isLogin } from '../Utils/Index';
+import { Redirect, Route } from 'react-router-dom';
+import { isLogin } from '../Utils';
 
-function PrivateRoute({ component : Component, ...rest }) {
+function PrivateRoute({component: Component,...rest}) {
     return (
-        <Route {...rest} render={props => (
+        <Route {...rest} render = {props => (
             isLogin() ?
-                <Component {...props} />
-                :
-                <Redirect to={"/Login"} />
-        )
-        }
+            <Component {...props}/>
+            :
+            <Redirect to={"/Logins"}/>
+        )}
         />
     );
 }
 
 export default PrivateRoute;
+
+
