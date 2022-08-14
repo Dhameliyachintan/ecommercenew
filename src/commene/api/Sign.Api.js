@@ -1,7 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification } from "firebase/auth";
-import { auth } from "../../../Firebase"
+import { auth } from "../../Firebase"
 
-export const SIgnAPI = (data) => {
+export const SignAPI = (data) => {
     console.log(data);
     return new Promise((resolve, reject) => {
         createUserWithEmailAndPassword(auth, data.email, data.password)

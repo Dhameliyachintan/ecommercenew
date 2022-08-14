@@ -1,5 +1,5 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects'
-import { SIgnAPI } from '../../component/commene/api/Sign.Api';
+import { SignAPI } from '../../commene/api/Sign.Api';
 import { setalert } from '../Action/Alert.action';
 import { emailverify } from '../Action/auth.Action';
 import * as ActionTypes from "../ActionTypes"
@@ -7,7 +7,7 @@ import * as ActionTypes from "../ActionTypes"
 function* Signup(action) {
     try {
         console.log(action.payload);
-        const user = yield call(SIgnAPI, action.payload);
+        const user = yield call(SignAPI, action.payload);
         yield put(setalert({ text: user.payload, color: "success" }))
         console.log(user);
         yield put(emailverify(user));
