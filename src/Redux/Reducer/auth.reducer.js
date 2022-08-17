@@ -10,18 +10,27 @@ const initialState = {
 export const SignupReducer = (state = initialState, action) => {
     console.log(action.type, action.payload);
     switch (action.type) {
-        // case ActionTypes.EMAIL_VERIFY:
-        //     return {
-        //         ...state,
-        //         isLoading: false,
-        //         user: action.payload,
-        //         error: ''
-        //     }
+        case ActionTypes.EMAIL_VERIFY:
+            return {
+                ...state,
+                isLoading: false,
+                user: action.payload,
+                error: ''
+            }
+
         case ActionTypes.LOGGED_USER:
             return {
                 ...state,
                 isLoading: false,
                 user: action.payload,
+                error: ''
+            }
+
+        case ActionTypes.LOGGEDINOUT_USER:
+            return {
+                ...state,
+                isLoading: false,
+                user: null,
                 error: ''
             }
 

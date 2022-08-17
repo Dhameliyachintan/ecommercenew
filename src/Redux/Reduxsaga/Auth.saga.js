@@ -1,8 +1,8 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects'
-import { LoginAPI, SignAPI } from '../../commene/api/Sign.Api';
+import { LoginAPI, LogoutAPI, SignAPI } from '../../commene/api/Sign.Api';
 import { history } from '../../History';
 import { setalert } from '../Action/Alert.action';
-import { emailverify, Loggedinuser } from '../Action/auth.Action';
+import { emailverify, LoggedinoutUser, Loggeduser, } from '../Action/auth.Action';
 import * as ActionTypes from "../ActionTypes"
 
 function* Signup(action) {
@@ -26,8 +26,23 @@ function* Login(action) {
         console.log(user);
         history.push("/")
         yield put(setalert({ text: "Login successfull", color: "Success" }))
-        yield put(Loggedinuser(user))
+        yield put(Loggeduser(user))  // logout text lakayne ave 
         // yield put(emailverify(user));
+    } catch (e) {
+        console.log(e);
+        yield put({ type: "USER_FETCH_FAILED", message: e.message });
+        yield put(setalert({ text: e.payload, color: "error" }))
+    }
+}
+
+function* Logout(action) {
+    try {
+        // console.log(action.payload);
+        const user = yield call(LogoutAPI, action.payload);    //request
+        console.log(user);
+        history.push("/Logins")
+        yield put(setalert({ text: user.payload, color: "Success" }))
+        yield put(LoggedinoutUser())  //login karava mate // data null karava // Login lakaya na ave
     } catch (e) {
         console.log(e);
         yield put({ type: "USER_FETCH_FAILED", message: e.message });
@@ -37,8 +52,9 @@ function* Login(action) {
 
 
 function* watchsaga() {
-    yield takeEvery(ActionTypes.SIGNUP_USER, Signup);
-    yield takeEvery(ActionTypes.LOGIN_USER, Login);
+    yield takeEvery(ActionTypes.SIGNUP_USER, Signup);  //Signup
+    yield takeEvery(ActionTypes.LOGIN_USER, Login);    //Login
+    yield takeEvery(ActionTypes.LOGOUT_USER, Logout);    //Login
 }
 
 export function* authsagacall() {

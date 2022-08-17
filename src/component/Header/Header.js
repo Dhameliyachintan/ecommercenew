@@ -1,8 +1,21 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
+import { LogoutUser } from '../../Redux/Action/auth.Action';
 import Alert from '../Alert/Alert';
 
 function Header(props) {
+
+    const auth = useSelector(state => state.auth)
+    console.log(auth);
+
+    const dispatch = useDispatch()
+
+    const handleLogout = () => {
+        dispatch(LogoutUser())
+        console.log("Logout");
+    }
+
 
     return (
         <header className="header_section">
@@ -79,10 +92,17 @@ function Header(props) {
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
-                                    <NavLink exact to={"/Logins"} className="nav-link" href="Loginss.html">Logins</NavLink>
-                                </li>
+                                {
+                                    auth.user === null ?
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink exact to={"/Logins"} className="nav-link" href="Loginss.html">Logins</NavLink>
+                                        </li> :
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink onClick={() => handleLogout()} exact to={"/Logins"} className="nav-link" href="Loginss.html">Logout</NavLink>
+                                        </li>
+                                }
                             </ul>
                         </div>
                         <Alert />

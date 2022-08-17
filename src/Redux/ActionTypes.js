@@ -9,3 +9,8 @@ export const RESET_ALERT = "RESET_ALERT"
 export const LOGIN_USER = "LOGIN_USER"
 export const LOGGED_USER = "LOGGED_USER"
 
+// LogoutUser
+export const LOGOUT_USER = "LOGOUT_USER"
+export const LOGGEDINOUT_USER = "LOGGEDINOUT_USER"
+
+

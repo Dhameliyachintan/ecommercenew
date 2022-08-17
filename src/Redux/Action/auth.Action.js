@@ -15,6 +15,16 @@ export const LoginAction = (data) => (dispatch) => {
     console.log(data);
 }
 
-export const Loggedinuser = (data) => (dispatch) => {
+export const Loggeduser = (data) => (dispatch) => {
     dispatch({ type: ActionTypes.LOGGED_USER, payload: data })
+}
+
+// Logout / Loginnull
+
+export const LogoutUser = () => (dispatch) => {
+    dispatch({ type: ActionTypes.LOGOUT_USER })
+}
+
+export const LoggedinoutUser = () => (dispatch) => {
+    dispatch({ type: ActionTypes.LOGGEDINOUT_USER })
 }

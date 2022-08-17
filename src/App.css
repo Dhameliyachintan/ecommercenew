@@ -32,11 +32,33 @@
   from {
     transform: rotate(0deg);
   }
+
   to {
     transform: rotate(360deg);
   }
 }
 
 
+.btn-wrapper button {
+  color: #fff;
+  background-color: red;
+  border: none;
+  padding: 10px;
+  border-radius: 4px;
+  width: 120px;
+}
 
 
+.cart-wrapper {
+  width: 500px;
+  height: 139px;
+  border: 1px solid #000;
+}
+
+.item {
+  float: left;
+  display: inline-block;
+  width: 120px;
+  padding: 12px;
+  height: 70px;
+}
