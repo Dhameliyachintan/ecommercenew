@@ -128,15 +128,3 @@ export const googleLoginAPI = () => {
     })
 }
 
-// export const ForgetpaswordAPI = (data) => {
-//     return new Promise((resolve, reject) => {
-//         sendPasswordResetEmail(auth, data.email)
-//             .then(() => {
-//                 resolve("Please verify your email");
-//             }).catch((error) => {
-//                 if ()
-//                     reject({ payload: error.code });
-//             })
-//     })
-// }
-
