@@ -63,26 +63,12 @@ function* googleLogin(action) {
     }
 }
 
-// function* Forgetpasword(action) {
-//     try {
-//         // console.log(action.payload);
-//         const user = yield call(ForgetpaswordAPI, action.payload);    //request
-//         console.log(user);
-//         history.push("/")
-//         yield put(setalert({ text: user.payload, color: "Success" }))
-//     } catch (e) {
-//         console.log(e);
-//         yield put(setalert({ text: e.payload, color: "error" }))
-//     }
-// }
-
 
 function* watchsaga() {
     yield takeEvery(ActionTypes.SIGNUP_USER, Signup);  //Signup
     yield takeEvery(ActionTypes.LOGIN_USER, Login);    //Login
     yield takeEvery(ActionTypes.LOGOUT_USER, Logout);    //Login
     yield takeEvery(ActionTypes.GOOGLELOGIN_USER, googleLogin);    //googlelogin
-    // yield takeEvery(ActionTypes.FORGET_PASSWORD_USER, Forgetpasword);    //googlelogin
 }
 
 export function* authsagacall() {
