@@ -9,7 +9,7 @@ export const emailverify = (user) => (dispatch) => {
     dispatch({ type: ActionTypes.EMAIL_VERIFY, payload: user })
 }
 
-// Login/Home page
+// Login/Home page logout
 export const LoginAction = (data) => (dispatch) => {
     dispatch({ type: ActionTypes.LOGIN_USER, payload: data })
     console.log(data);
@@ -28,3 +28,14 @@ export const LogoutUser = () => (dispatch) => {
 export const LoggedinoutUser = () => (dispatch) => {
     dispatch({ type: ActionTypes.LOGGEDINOUT_USER })
 }
+
+// googlelogin
+
+export const googleActionLogin = () => (dispatch) => {
+    dispatch({ type: ActionTypes.GOOGLELOGIN_USER })
+}
+
+// export const forgetpassword = (data) => (dispatch) => {
+//     dispatch({ type: ActionTypes.FORGET_PASSWORD_USER, payload: data })
+// }
+

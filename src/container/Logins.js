@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Form, Formik, useFormik } from 'formik';
-import { LoginAction, signupAction } from '../Redux/Action/auth.Action';
+import { googleActionLogin, LoginAction, signupAction } from '../Redux/Action/auth.Action';
 
 function Logins(props) {
     const [userType, setUserType] = useState('Login')
@@ -14,8 +14,14 @@ function Logins(props) {
         // alert(JSON.stringify(values, null, 2));
         sessionStorage.setItem("user", "1234567")
         dispatch(LoginAction(values))
-
     }
+
+    const handleActionlogin = () => {
+        // alert(JSON.stringify(values, null, 2));
+        dispatch(googleActionLogin())
+    }
+
+
     const handlesignup = (values) => {
         // let localdata = JSON.parse(localStorage.getItem("Logins"))
         // console.log(localdata);
@@ -193,14 +199,19 @@ function Logins(props) {
                                             <div className='text-center mt-5'>
                                                 <span className='text-dark'>create a New account</span>
                                                 <button onClick={() => { setUserType('Signup') }} >signup</button> <br></br>
-                                                <button className='mt-3' onClick={() =>  setReset(true) }>Forget password</button>
+                                                <button className='mt-3' onClick={() => setReset(true)}>Forget password</button>
                                             </div> :
                                             <div className='text-center mt-5'>
                                                 <span className='text-dark'>already have an account ?</span>
-                                                <button onClick={() =>  setUserType('Login') } >Login</button>
+                                                <button onClick={() => setUserType('Login')} >Login</button>
                                             </div>
                                 }
                             </div>
+                            <div className='text-center'>
+                                    <button onClick={() => handleActionlogin()} className="button-google">
+                                        <img src="../assets/images/google.png" alt="" width="40"/> Sign up google
+                                    </button>
+                                </div>
                         </Form>
                     </Formik>
                 </div>
