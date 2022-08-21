@@ -128,15 +128,20 @@ export const googleLoginAPI = () => {
     })
 }
 
-// export const ForgetpaswordAPI = (data) => {
-//     return new Promise((resolve, reject) => {
-//         sendPasswordResetEmail(auth, data.email)
-//             .then(() => {
-//                 resolve("Please verify your email");
-//             }).catch((error) => {
-//                 if ()
-//                     reject({ payload: error.code });
-//             })
-//     })
-// }
+export const ForgetpasswordAPI = (data) => {
+    return new Promise((resolve, reject) => {
+        sendPasswordResetEmail(auth, data.email)
+            .then(() => {
+                resolve({ payload: "Please Check Your email" });
+            }).catch((error) => {
+                const errorCode = error.code;
+
+                if (error.code.localeCompare("auth/user-not-found") === 0)
+                    reject({ payload: "user not found" })
+
+
+                reject({ payload: error.code });
+            })
+    })
+}
 

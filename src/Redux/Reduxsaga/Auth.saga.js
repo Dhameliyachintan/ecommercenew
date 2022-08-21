@@ -1,5 +1,5 @@
 import { call, put, takeEvery, all } from 'redux-saga/effects'
-import { ForgetpaswordAPI, googleLoginAPI, LoginAPI, LogoutAPI, SignAPI } from '../../commene/api/Sign.Api';
+import { ForgetpasswordAPI, googleLoginAPI, LoginAPI, LogoutAPI, SignAPI } from '../../commene/api/Sign.Api';
 import { history } from '../../History';
 import { setalert } from '../Action/Alert.action';
 import { emailverify, LoggedinoutUser, Loggeduser, } from '../Action/auth.Action';
@@ -63,18 +63,19 @@ function* googleLogin(action) {
     }
 }
 
-// function* Forgetpasword(action) {
-//     try {
-//         // console.log(action.payload);
-//         const user = yield call(ForgetpaswordAPI, action.payload);    //request
-//         console.log(user);
-//         history.push("/")
-//         yield put(setalert({ text: user.payload, color: "Success" }))
-//     } catch (e) {
-//         console.log(e);
-//         yield put(setalert({ text: e.payload, color: "error" }))
-//     }
-// }
+function* Forgetpassword(action) {
+    try {
+        // console.log(action.payload);
+        const user = yield call(ForgetpasswordAPI, action.payload);    //request
+        console.log(user);
+        yield put(setalert({ text: user.payload, color: "Success" }))
+        // history.push("/")
+    } catch (e) {
+        console.log(e);
+        yield put(setalert({ text: e.payload, color: "error" }))
+    }
+}
+
 
 
 function* watchsaga() {
@@ -82,7 +83,7 @@ function* watchsaga() {
     yield takeEvery(ActionTypes.LOGIN_USER, Login);    //Login
     yield takeEvery(ActionTypes.LOGOUT_USER, Logout);    //Login
     yield takeEvery(ActionTypes.GOOGLELOGIN_USER, googleLogin);    //googlelogin
-    // yield takeEvery(ActionTypes.FORGET_PASSWORD_USER, Forgetpasword);    //googlelogin
+    yield takeEvery(ActionTypes.FORGET_PASSWORD_USER, Forgetpassword);    //googlelogin
 }
 
 export function* authsagacall() {
