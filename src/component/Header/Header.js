@@ -9,6 +9,9 @@ function Header(props) {
     const auth = useSelector(state => state.auth)
     console.log(auth);
 
+    const count = useSelector(state => state.counter)
+    console.log(count);
+
     const dispatch = useDispatch()
 
     const handleLogout = () => {
@@ -49,12 +52,12 @@ function Header(props) {
                                     My Account
                                 </span>
                             </a>
-                            <a href className="cart-link">
-                                <i className="fa fa-shopping-cart" aria-hidden="true" />
-                                <span>
-                                    Cart
+                            <button type="button" class="btn btn-primary position-relative">
+                            <i className="fa fa-shopping-cart" aria-hidden="true" />
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {count.counter}
                                 </span>
-                            </a>
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -91,6 +94,11 @@ function Header(props) {
                                 <li className="nav-item">
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink>
+                                </li>
+                                <li className="nav-item">
+                                    {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                    <NavLink exact to={"/Category"} className="nav-link" href="Category.html">Category</NavLink>
+                                    <ul></ul>
                                 </li>
                                 {
                                     auth.user === null ?

@@ -175,10 +175,11 @@ function Logins(props) {
                                             <div className="validate" />
                                         </div>
                                 }
+                                
                                 {
                                     reset ?
                                         <div className="text-center">
-                                            <button type="submit">Forgot password</button><br></br>
+                                            <button type="submit">Forgot password</button>
                                         </div>
                                         :
                                         userType === 'Login' ?
@@ -210,7 +211,7 @@ function Logins(props) {
                             </div>
                             <div className='text-center'>
                                     <button onClick={() => handleActionlogin()} className="button-google">
-                                        <img src="../assets/images/google.png" alt="" width="40"/> Sign up google
+                                        <img src="images/google.png" alt="" width="40"/> Sign up google
                                     </button>
                                 </div>
                         </Form>

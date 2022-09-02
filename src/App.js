@@ -1,3 +1,4 @@
+import 'bootstrap/dist/css/bootstrap.css'
 import logo from './logo.svg';
 import './App.css';
 import Header from './component/Header/Header';
@@ -15,6 +16,7 @@ import PrivateRoute from './container/Route/PrivateRoute';
 import { Provider } from 'react-redux';
 import { store } from './Redux/Store';
 import { SnackbarProvider } from 'notistack';
+import Category from './component/Category/Category';
 
 function App() {
   // let store = Configreducer()
@@ -29,7 +31,8 @@ function App() {
             <PrivateRoute exact path={"/Testimonial"} component={Testimonial} />
             <PublicRoute exact path={"/Product"} component={Product} />
             <PublicRoute exact path={"/Why"} component={Why} />
-            <PublicRoute restricted={false} exact path={"/Logins"} component={Logins} />
+            <PublicRoute restricted={true} exact path={"/Logins"} component={Logins} />
+            <PublicRoute exact path={"/Category"} component={Category} />
           </Switch>
         </Provider>
         <Footer />

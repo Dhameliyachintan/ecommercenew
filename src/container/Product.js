@@ -1,6 +1,31 @@
 import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { addtocart, emptytocart, removetocart } from '../Redux/Action/cart.action';
 
 function Product(props) {
+    const count = useSelector(state => state.counter)
+    console.log(count);
+    const dispatch = useDispatch()
+
+    const increment = () => {
+        dispatch(addtocart())
+    }
+
+    // const decrement = () => {
+    //     dispatch(removetocart())
+    // }
+
+    // const empty = () => {
+    //     dispatch(emptytocart())
+    // }
+
+    // const product = {
+    //     name: "i phone",
+    //     category: "mobile",
+    //     price: 100000,
+    //     color: "red"
+    // }
+
     return (
         <div>
             <section className="product_section layout_padding">
@@ -16,10 +41,17 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p1.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
+                                        <span onClick={() => increment()}>
                                             Add To Cart
                                         </span>
                                     </a>
+                                    {/* <a href className="remove_cart_btn">
+                                        <span onClick={() => decrement()}>
+                                            remove to cart
+                                        </span>
+
+                                    </a> */}
+                                    {/* <button onClick={() => empty()}>emptyt</button> */}
                                 </div>
                                 <div className="detail-box">
                                     <h5>
@@ -45,9 +77,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p2.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -74,9 +104,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p3.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -103,9 +131,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p4.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -132,9 +158,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p5.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -161,9 +185,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p6.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -190,9 +212,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p7.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -219,9 +239,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p8.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -248,9 +266,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p9.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
+                                        <span onClick={() => increment()}>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">

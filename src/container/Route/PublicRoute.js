@@ -6,7 +6,7 @@ function PublicRoute({component: Component,restricted = false,...rest}) {
     return (
         <Route {...rest} render={props => (
             isLogin()&& restricted ?
-            <Redirect to={"/"} />
+            <Redirect to={"/Product"} />
             :
             <Component {...props}/>
         )}
