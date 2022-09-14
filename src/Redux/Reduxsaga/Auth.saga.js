@@ -83,7 +83,7 @@ function* watchsaga() {
     yield takeEvery(ActionTypes.LOGIN_USER, Login);    //Login
     yield takeEvery(ActionTypes.LOGOUT_USER, Logout);    //Login
     yield takeEvery(ActionTypes.GOOGLELOGIN_USER, googleLogin);    //googlelogin
-    yield takeEvery(ActionTypes.FORGET_PASSWORD_USER, Forgetpassword);    //googlelogin
+    yield takeEvery(ActionTypes.FORGET_PASSWORD_USER, Forgetpassword);    //Forgetpassword verify
 }
 
 export function* authsagacall() {

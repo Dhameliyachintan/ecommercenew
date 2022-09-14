@@ -1,4 +1,4 @@
-const Categories = [
+const category = [
     {
         id: 1,
         Title: "Surhi Men Checkered Casual Grey Shirt",
@@ -148,5 +148,4 @@ const Categories = [
     }
 ]
 
-export default Categories
-
+// export default category

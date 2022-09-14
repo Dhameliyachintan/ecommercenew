@@ -1,16 +1,20 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { LogoutUser } from '../../Redux/Action/auth.Action';
 import Alert from '../Alert/Alert';
 
+
 function Header(props) {
 
     const auth = useSelector(state => state.auth)
-    console.log(auth);
+    // console.log(auth);
 
-    const count = useSelector(state => state.counter)
-    console.log(count);
+    const cart = useSelector(state => state.cartcounter)
+    console.log(cart);
+
+    const categorys = useSelector(state => state.category)
+    // console.log(categorys);
 
     const dispatch = useDispatch()
 
@@ -19,6 +23,14 @@ function Header(props) {
         console.log("Logout");
     }
 
+
+    const [category, setCategory] = useState([])
+    // const filterResult = (Item) => {
+    //     const result = category.filter((Data) => {
+    //         return Data.categorys.category === Item;
+    //     })
+    //     setCategory(result)
+    // }
 
     return (
         <header className="header_section">
@@ -53,9 +65,9 @@ function Header(props) {
                                 </span>
                             </a>
                             <button type="button" class="btn btn-primary position-relative">
-                            <i className="fa fa-shopping-cart" aria-hidden="true" />
+                                <i className="fa fa-shopping-cart" aria-hidden="true" />
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {count.counter}
+                                    {cart.cartcounter}
                                 </span>
                             </button>
                         </div>
@@ -83,9 +95,32 @@ function Header(props) {
                                     {/* <a className="nav-link" href="about.html"> About</a> */}
                                     <NavLink exat to={"/About"} className="nav-link" href="about.html"> About</NavLink>
                                 </li>
+                                <li className="dropdown">
+                                    {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                    <NavLink exact to={"/Category"} className="nav-link text-white" href="Category.html">Category</NavLink>
+                                    {/* <ul class=" dropdown-content"> */}
+                                    {/* <li className='pb-3'><NavLink to={{
+                                            pathname: '/Categorywiseproduct',
+                                            state: { id: "Men" }
+                                        }}>
+                                            Men
+                                        </NavLink>
+                                        </li> */}
+                                    {/* </ul> */}
+                                    <ul className='dropdown-content'>
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink exact to={"/Categoriesadmin"} className="nav-link" href="Categoriesadmin.html">Categoriesadmin</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink exact to={"/Productadmin"} className="nav-link" href="Productadmin.html">Productadmin</NavLink>
+                                        </li>
+                                    </ul>
+                                </li>
                                 <li className="nav-item">
                                     {/* <a className="nav-link" href="product.html">Products</a> */}
-                                    <NavLink exact to={"/Product"} className="nav-link" href="product.html">Products</NavLink>
+                                    <NavLink exact to={"/Product"} className="nav-link" href="product.html">Product</NavLink>
                                 </li>
                                 <li className="nav-item">
                                     {/* <a className="nav-link" href="why.html">Why Us</a> */}
@@ -95,11 +130,7 @@ function Header(props) {
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink>
                                 </li>
-                                <li className="nav-item">
-                                    {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
-                                    <NavLink exact to={"/Category"} className="nav-link" href="Category.html">Category</NavLink>
-                                    <ul></ul>
-                                </li>
+                                
                                 {
                                     auth.user === null ?
                                         <li className="nav-item">
@@ -123,3 +154,4 @@ function Header(props) {
 }
 
 export default Header;
+

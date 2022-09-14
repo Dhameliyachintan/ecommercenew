@@ -1,15 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addtocart, emptytocart, removetocart } from '../Redux/Action/cart.action';
+import { addproductdata, addtocart, cartgetproduct, } from '../Redux/Action/cart.action';
 
 function Product(props) {
-    const count = useSelector(state => state.counter)
-    console.log(count);
     const dispatch = useDispatch()
+    const [data, setData] = useState([])
+
+    const cart = useSelector(state => state.cartcounter)
+    console.log(cart);
 
     const increment = () => {
         dispatch(addtocart())
     }
+
+    const loadData = () => {
+        setData(cart.cartcounter)
+    }
+
+    // const carthandle = () => {
+    //      const data = {
+    //          name : "ProductName",
+    //          price : "300",
+    //          image : "images/p1.png"
+    //      }
+    //      dispatch(data)
+    // }
+
+    useEffect(
+        () => {
+            loadData()
+            dispatch(cartgetproduct())
+            dispatch(addproductdata())
+        },
+        [])
 
     // const decrement = () => {
     //     dispatch(removetocart())
@@ -17,13 +40,6 @@ function Product(props) {
 
     // const empty = () => {
     //     dispatch(emptytocart())
-    // }
-
-    // const product = {
-    //     name: "i phone",
-    //     category: "mobile",
-    //     price: 100000,
-    //     color: "red"
     // }
 
     return (
@@ -41,7 +57,9 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p1.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>
+                                        <span onClick={() => {
+                                            increment()
+                                        }}>
                                             Add To Cart
                                         </span>
                                     </a>

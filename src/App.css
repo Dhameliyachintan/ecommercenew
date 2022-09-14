@@ -90,11 +90,87 @@
 }
 
 .card-img-top {
-  width: 300px;
-  height: 300px;
+  width: 100px;
+  height: 100px;
   object-fit: contain;
 }
 
 .card-title {
   font-size: 16px;
+}
+
+
+/* .dropdown-nav {
+  opacity: 0;
+  transition: transform .3s cubic-bezier(0.88, -0.72, 0, 1), opacity .3s ease-in-out;
+  transform: translateY(0);
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  position: absolute;
+  z-index: 1;
+  top: 45px;
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.dropdown:hover .dropdown-nav {
+  opacity: 1;
+  transform: translateY(15px);
+}
+
+.dropdown-nav a {
+  font-weight: 300;
+  font-size: 1.2rem;
+} */
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  /* display: none; */
+  position: absolute;
+  background-color: #3a4468;
+  width: 200px;
+  list-style: none;
+  opacity: 0;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+  transform: translateY(0);
+  /* top: 62px; */
+  left: 7px;
+  transition: transform .3s cubic-bezier(0.88, -0.72, 0, 1), opacity .3s ease-in-out;
+}
+
+.dropdown-content a {
+  color: #fff;
+  /* padding: 12px 16px; */
+  text-decoration: none;
+  /* display: block; */
+}
+
+.dropdown-content a:hover {
+  background-color: #434f78
+}
+
+.dropdown:hover .dropdown-content {
+  /* display: block; */
+  transform: translateY(21px);
+  opacity: 1;
+}
+
+.dropdown-1 {
+  position: relative;
+  display: inline-block;
+}
+
+
+.card-images img{
+    height: 30vh;
+    object-fit: contain;
+}
+
+.c-pointer {
+  cursor: pointer;
 }
