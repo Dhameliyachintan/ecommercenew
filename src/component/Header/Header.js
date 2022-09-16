@@ -23,15 +23,6 @@ function Header(props) {
         console.log("Logout");
     }
 
-
-    const [category, setCategory] = useState([])
-    // const filterResult = (Item) => {
-    //     const result = category.filter((Data) => {
-    //         return Data.categorys.category === Item;
-    //     })
-    //     setCategory(result)
-    // }
-
     return (
         <header className="header_section">
             <div className="header_top">
@@ -98,15 +89,6 @@ function Header(props) {
                                 <li className="dropdown">
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Category"} className="nav-link text-white" href="Category.html">Category</NavLink>
-                                    {/* <ul class=" dropdown-content"> */}
-                                    {/* <li className='pb-3'><NavLink to={{
-                                            pathname: '/Categorywiseproduct',
-                                            state: { id: "Men" }
-                                        }}>
-                                            Men
-                                        </NavLink>
-                                        </li> */}
-                                    {/* </ul> */}
                                     <ul className='dropdown-content'>
                                         <li className="nav-item">
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
