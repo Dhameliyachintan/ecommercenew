@@ -55,6 +55,7 @@ function Productadmin(props) {
             productname: '',
             price: '',
             categories: '',
+            desc: '',
             file: ''
         },
         validationSchema: schema,
@@ -131,7 +132,8 @@ function Productadmin(props) {
                 </>
             )
 
-        }
+        },
+        { field: 'desc', headerName: 'desc', width: 130 },
     ];
 
     const handleEdit = (params) => {
@@ -237,6 +239,18 @@ function Productadmin(props) {
                                         defaultValue={formik.values.price}
                                         helperText={formik.errors.price}
                                         error={formik.errors.price ? true : false}
+                                    />
+                                    <TextField
+                                        margin="dense"
+                                        id="desc"
+                                        label="desc"
+                                        name='desc'
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+                                        defaultValue={formik.values.desc}
+                                        helperText={formik.errors.desc}
+                                        error={formik.errors.desc ? true : false}
                                     />
 
                                     <select name="categories" className='form-select' onChange={formik.handleChange}>
