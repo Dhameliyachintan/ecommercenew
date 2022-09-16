@@ -1,8 +1,6 @@
 // import { Select } from 'react-select';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
-import { useHistory } from 'react-router-dom';
 import { getcategorydata } from '../../Redux/Action/categeries.action';
 import { getproductdata } from '../../Redux/Action/Product.action';
 
@@ -19,7 +17,6 @@ function Category(props) {
     console.log("product", products.product);
 
     const dispatch = useDispatch()
-    // const history = useHistory()
 
     useEffect(
         () => {
@@ -41,7 +38,7 @@ function Category(props) {
     ];
 
 
-    // console.log("uniqcategory", categoryList);
+   console.log("uniqcategory", categoryList);
 
     const filter = (categories) => {
         console.log("categories", categories);
@@ -66,17 +63,7 @@ function Category(props) {
     console.log(finaldata);
 
 
-    // let categorydata = category.length > 0 ? category : categorys.category;
-
-    // const handlefliter = (id) => {
-    //     history.push("/Productdetails", id)
-    //     console.log(id);
-    //     // setCategory(categorys.category)
-
-    // }
-
     const handleSearch = (val) => {
-        // let localdata = JSON.parse(localStorage.getItem("product"))
 
         let fdata = finaldata.filter((d, key) => (
             d.productname.toString().includes(val) ||
