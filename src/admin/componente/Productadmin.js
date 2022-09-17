@@ -93,8 +93,7 @@ function Productadmin(props) {
     useEffect(
         () => {
             loadData()
-            dispatch(getproductdata(data))
-            dispatch(getcategorydata(data))
+            dispatch(getproductdata())
         },
         [])
 
@@ -164,7 +163,8 @@ function Productadmin(props) {
             d.id.toString().includes(val) ||
             d.productname.toString().toLowerCase().includes(val.toLowerCase()) ||
             d.categories.toString().includes(val.toLowerCase()) ||
-            d.price.toString().includes(val)
+            d.price.toString().includes(val) ||
+            d.desc.toString().includes(val)
         ))
 
         console.log(fdata);
@@ -263,20 +263,6 @@ function Productadmin(props) {
                                             })
                                         }
                                     </select>
-                                    {/* <TextField
-                                        margin="dense"
-                                        id="categories"
-                                        label="categories"
-                                        name='categories'
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={formik.handleChange}
-                                        defaultValue={formik.values.categories}
-                                        helperText={formik.errors.categories}
-                                        error={formik.errors.categories ? true : false}
-
-                                    /> */}
-
 
                                     <input
                                         type="file"
