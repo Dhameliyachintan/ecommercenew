@@ -36,6 +36,7 @@ export const addproductdata = (data) => async (dispatch) => {
                             categories: data.categories,
                             price: data.price,
                             productname: data.productname,
+                            desc : data.desc,
                             url: url,
                             fileName: imagestr
                         }
@@ -46,6 +47,7 @@ export const addproductdata = (data) => async (dispatch) => {
                                 categories: data.categories,
                                 price: data.price,
                                 productname: data.productname,
+                                desc : data.desc,
                                 url: url,
                                 fileName: imagestr
                             }
@@ -74,6 +76,7 @@ export const updateproductdata = (data) => async (dispatch) => {
                 categories: data.categories,
                 price: data.price,
                 productname: data.productname,
+                desc : data.desc,
                 url: data.url
             });
             dispatch({ type: ActionTypes.UPDATE_PRODUCT, payload: data })
@@ -94,6 +97,7 @@ export const updateproductdata = (data) => async (dispatch) => {
                                     categories: data.categories,
                                     price: data.price,
                                     productname: data.productname,
+                                    data : data.desc,
                                     url: url,
                                     fileName: imagestr
                                 });
