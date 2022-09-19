@@ -44,8 +44,9 @@ function Productadmin(props) {
     let product = {
         productname: yup.string().required('enter productname'),
         price: yup.string().required('please enter price'),
-        categories : yup.string().required('please select categories'),
-        file: yup.mixed().required("Please Upload File")
+        categories: yup.string().required('please select categories'),
+        file: yup.mixed().required("Please Upload File"),
+        desc: yup.string().required('please enter desc'),
     }
 
     let schema = yup.object().shape(product);
@@ -94,7 +95,7 @@ function Productadmin(props) {
         () => {
             loadData()
             dispatch(getproductdata(data))
-            dispatch(getcategorydata(data))
+            // dispatch(getcategorydata(data))
         },
         [])
 
@@ -145,6 +146,7 @@ function Productadmin(props) {
             productname: params.productname,
             price: params.price,
             categories: params.categories,
+            desc: params.desc,
             file: params.url,
             fileName: params.fileName
         });
@@ -165,6 +167,7 @@ function Productadmin(props) {
             d.productname.toString().toLowerCase().includes(val.toLowerCase()) ||
             d.categories.toString().includes(val.toLowerCase()) ||
             d.price.toString().includes(val)
+            // d.desc.toString().includes(val)
         ))
 
         console.log(fdata);
@@ -172,7 +175,7 @@ function Productadmin(props) {
         setfilterdata(fdata)
         // console.log(val);
     }
- 
+
     console.log(formik.errors)
 
     let fdata = filterdata.length > 0 ? filterdata : products.product
@@ -256,7 +259,7 @@ function Productadmin(props) {
                                     <select name="categories" className='form-select' onChange={formik.handleChange}>
                                         {
                                             categorys.category.map((values) => {
-                                                const { id, categoryname} = values
+                                                const { id, categoryname } = values
                                                 return (
                                                     <option value={categoryname}>{categoryname}</option>
                                                 )

@@ -116,6 +116,10 @@ function Header(props) {
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                             <NavLink exact to={"/Productadmin"} className="nav-link" href="Productadmin.html">Productadmin</NavLink>
                                         </li>
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink exact to={"/Productdetails"} className="nav-link" href="Productdetails.html">Productdetails</NavLink>
+                                        </li>
                                     </ul>
                                 </li>
                                 <li className="nav-item">

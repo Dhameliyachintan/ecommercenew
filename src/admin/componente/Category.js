@@ -24,7 +24,7 @@ function Category(props) {
     useEffect(
         () => {
             // loadData()
-            dispatch(getcategorydata())
+            // dispatch(getcategorydata())
             dispatch(getproductdata())
             // setProducts(products.product);
         },
@@ -67,47 +67,45 @@ function Category(props) {
 
 
     // let categorydata = category.length > 0 ? category : categorys.category;
-
-    // const handlefliter = (id) => {
-    //     history.push("/Productdetails", id)
-    //     console.log(id);
-    //     // setCategory(categorys.category)
-
-    // }
-
     const handleSearch = (val) => {
         // let localdata = JSON.parse(localStorage.getItem("product"))
 
-        let fdata = finaldata.filter((d, key) => (
-            d.productname.toString().includes(val) ||
-            d.desc.toString().includes(val) ||
+        let fdata = finaldata.filter((d) => (
+            d.id.toString().includes(val) ||
+            d.productname.toString().toLowerCase().includes(val.toLowerCase()) ||
             d.categories.toString().includes(val.toLowerCase()) ||
             d.price.toString().includes(val)
         ))
 
-        // console.log(fdata);
+        console.log(fdata);
 
         setfilterdata(fdata)
         // console.log(val);
-    
     }
-    let fdata = filterdata.length > 0 ? filterdata : products.product
-    console.log(fdata);
 
-   
+
+    let fdata = filterdata.length > 0 ? filterdata : products.product
+
+
+    const handleproduct = (val) => {
+        console.log(val)
+        history.push('/Productdetails', val)
+    }
+
+
     return (
         <>
-            <input
-                type="text"
-                id='search'
-                label='search'
-                variant='standard'
-                placeholder='search'
-                onChange={(e) => { handleSearch(e.target.value) }}
-
-            />
             {/* Start Banner Area */}
-            <div className='container-fluid mx-2'>
+            <div className='container mx-2 '>
+                <input
+                    type="text"
+                    id='search'
+                    label='search'
+                    variant='standard'
+                    placeholder='search'
+                    onChange={(e) => { handleSearch(e.target.value) }}
+
+                />
                 <div className='row mt-5 mx-2'>
                     <div className="col-xl-6">
                         {/* <Navbar filter={filter} categoryList={categoryList} /> */}
@@ -123,7 +121,7 @@ function Category(props) {
 
                     <div className="col-xl-12">
                         <div className="row">
-                            {fdata.map((val, id) => {
+                            {finaldata.map((val, id) => {
                                 // const { id, productname, price, url, categories } = values
                                 return (
                                     <>
@@ -136,7 +134,7 @@ function Category(props) {
                                                     <p className="card-price fw-bold">Price :{val.price}</p>
                                                     <h4 className="card-title lh-base">{val.categories}</h4>
                                                     <h4 className="card-title lh-base">{val.desc}</h4>
-                                                    <button href="#" className="btn btn-dark ms-3 px-3">Read More</button>
+                                                    <button href="#" className="btn btn-dark ms-3 px-3"  onClick={() => { handleproduct(val) }}>Read More</button>
                                                 </div>
                                             </div>
                                         </div>

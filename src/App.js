@@ -19,7 +19,7 @@ import { SnackbarProvider } from 'notistack';
 import Category from './admin/componente/Category';
 import Productadmin from './admin/componente/Productadmin';
 import Categoriesadmin from './admin/componente/Categoriesadmin';
-// import Productdetails from './admin/componente/Productdetails';
+import Productdetails from './admin/componente/Productdetails';
 
 function App() {
   // let store = Configreducer()
@@ -38,7 +38,7 @@ function App() {
             <PublicRoute exact path={"/Category"} component={Category} />
             <PublicRoute exact path={"/Categoriesadmin"} component={Categoriesadmin} />
             <PublicRoute exact path={"/Productadmin"} component={Productadmin} />
-            {/* <PublicRoute exact path={"/Productdetails"} component={Productdetails} /> */}
+            <PublicRoute exact path={"/Productdetails"} component={Productdetails} />
           </Switch>
         </Provider>
         <Footer />
