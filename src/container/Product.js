@@ -6,17 +6,6 @@ function Product(props) {
     const dispatch = useDispatch()
     const [data, setData] = useState([])
 
-    const cart = useSelector(state => state.cartcounter)
-    console.log(cart);
-
-    const increment = () => {
-        dispatch(addtocart())
-    }
-
-    const loadData = () => {
-        setData(cart.cartcounter)
-    }
-
     // const carthandle = () => {
     //      const data = {
     //          name : "ProductName",
@@ -25,15 +14,6 @@ function Product(props) {
     //      }
     //      dispatch(data)
     // }
-
-    useEffect(
-        () => {
-            loadData()
-            dispatch(cartgetproduct())
-            dispatch(addproductdata())
-        },
-        [])
-
     // const decrement = () => {
     //     dispatch(removetocart())
     // }
@@ -57,9 +37,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p1.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => {
-                                            increment()
-                                        }}>
+                                        <span>
                                             Add To Cart
                                         </span>
                                     </a>
@@ -95,7 +73,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p2.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -122,7 +100,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p3.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -149,7 +127,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p4.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -176,7 +154,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p5.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -203,7 +181,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p6.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -230,7 +208,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p7.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -257,7 +235,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p8.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">
@@ -284,7 +262,7 @@ function Product(props) {
                                 <div className="img-box">
                                     <img src="images/p9.png" alt />
                                     <a href className="add_cart_btn">
-                                        <span onClick={() => increment()}>Add To Cart</span>
+                                        <span>Add To Cart</span>
                                     </a>
                                 </div>
                                 <div className="detail-box">

@@ -10,27 +10,16 @@ function Header(props) {
     const auth = useSelector(state => state.auth)
     // console.log(auth);
 
-    const cart = useSelector(state => state.cartcounter)
-    console.log(cart);
-
-    const categorys = useSelector(state => state.category)
+    // const cart = useSelector(state => state.cart)
+    // console.log(cart);
     // console.log(categorys);
 
     const dispatch = useDispatch()
 
     const handleLogout = () => {
         dispatch(LogoutUser())
-        console.log("Logout");
+        // console.log("Logout");
     }
-
-
-    const [category, setCategory] = useState([])
-    // const filterResult = (Item) => {
-    //     const result = category.filter((Data) => {
-    //         return Data.categorys.category === Item;
-    //     })
-    //     setCategory(result)
-    // }
 
     return (
         <header className="header_section">
@@ -67,7 +56,7 @@ function Header(props) {
                             <button type="button" class="btn btn-primary position-relative">
                                 <i className="fa fa-shopping-cart" aria-hidden="true" />
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {cart.cartcounter}
+                                    {/* {cart.cart} */}
                                 </span>
                             </button>
                         </div>
@@ -98,15 +87,6 @@ function Header(props) {
                                 <li className="dropdown">
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                     <NavLink exact to={"/Category"} className="nav-link text-white" href="Category.html">Category</NavLink>
-                                    {/* <ul class=" dropdown-content"> */}
-                                    {/* <li className='pb-3'><NavLink to={{
-                                            pathname: '/Categorywiseproduct',
-                                            state: { id: "Men" }
-                                        }}>
-                                            Men
-                                        </NavLink>
-                                        </li> */}
-                                    {/* </ul> */}
                                     <ul className='dropdown-content'>
                                         <li className="nav-item">
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
@@ -119,6 +99,10 @@ function Header(props) {
                                         <li className="nav-item">
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
                                             <NavLink exact to={"/Productdetails"} className="nav-link" href="Productdetails.html">Productdetails</NavLink>
+                                        </li>
+                                        <li className="nav-item">
+                                            {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
+                                            <NavLink exact to={"/Cart"} className="nav-link" href="Cart.html">Cart</NavLink>
                                         </li>
                                     </ul>
                                 </li>

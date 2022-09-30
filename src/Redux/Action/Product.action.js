@@ -4,7 +4,7 @@ import * as ActionTypes from "../ActionTypes"
 import { deleteObject, ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const getproductdata = (data) => async (dispatch) => {
-    console.log(data)
+    // console.log(data)
     try {
         let data = []
 
@@ -17,7 +17,7 @@ export const getproductdata = (data) => async (dispatch) => {
 
     } catch (error) {
         dispatch(errorproduct(error))
-        console.log(error);
+        // console.log(error);
     }
 }
 

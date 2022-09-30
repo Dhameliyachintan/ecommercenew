@@ -5,11 +5,10 @@ import { SignupReducer } from "./auth.reducer";
 import { cartreducers } from "./cart.reducer"
 import { productreducer } from "./Product.reducer";
 
-
 export const rootReducer = combineReducers({
     auth: SignupReducer,
     alert: alertreducer,
-    cartcounter: cartreducers,
+    cart: cartreducers,
     category : categoryreducer,
-    product : productreducer
+    product : productreducer,
 })

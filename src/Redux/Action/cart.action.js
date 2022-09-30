@@ -1,48 +1,46 @@
 import *as ActionTypes from "../ActionTypes"
-import { db, storage } from "../../Firebase";
-import { addDoc, collection, getDocs } from "firebase/firestore";
 
-export const addtocart = () => (dispatch) => {
-    dispatch({ type: ActionTypes.ADD_TO_CART })
+
+//2
+export const addtocart = (d) => (dispatch, getState) => {
+    console.log(d)
+    console.log("d", getState().cart)
+    // getState().cart.cart((c) => {
+    //     if (c.id === d.id) {
+    //        return {
+    //            id : d.id,
+    //            Quantity : c.Quantity + 1
+    //        }
+    //     } else {
+    //         return c
+    //     }
+    // })
+    dispatch({ type: ActionTypes.CARTADD_DATA, payload: { id: d.id, Quantity: 1 } })
+}
+//1
+export const gettocart = () => (dispatch) => {
+    dispatch({ type: ActionTypes.GET_TO_CART })
 }
 
-export const removetocart = () => (dispatch) => {
-    dispatch({ type: ActionTypes.REMOVE_TO_CART })
+//3
+export const incrementcounter = (id) => (dispatch) => {
+    console.log(id)
+    dispatch({ type: ActionTypes.CART_INCREMENTCOUNTER, payload: id })
 }
 
-// export const emptytocart = () => (dispatch) => {
-//     dispatch({ type: ActionTypes.EMPTY_TO_CART })
-// }
-
-export const cartgetproduct = (data,) => async (dispatch) => {
-    console.log("data");
-    try {
-        let data = []
-
-        const querySnapshot = await getDocs(collection(db, "product"));
-        querySnapshot.forEach((doc) => {
-            data.push({ id: doc.id, ...doc.data() })
-        })
-
-        dispatch({ type: ActionTypes.CARTGET_PRODUCT, payload: data })  
-
-    } catch (error) {
-        dispatch(errorcartproduct(error))
-        console.log(error);
-    }
+//3
+export const decrementcounter = (id) => (dispatch) => {
+    console.log(id)
+    dispatch({ type: ActionTypes.CART_DECREMENTCOUNTER, payload: id })
 }
 
-export const addproductdata = (data) => async (dispatch) => {
-    console.log(data);
-    try {
-        const docRef = await addDoc(collection(db, "product"), data);
-        console.log("Document written with ID: ", docRef.id);
-        dispatch({ type: ActionTypes.CARTADD_PRODUCT, payload: { id: docRef.id, ...data } })
-    } catch (error) {
-        dispatch(errorcartproduct(error.message))
-        console.error("Error adding document: ", error);
-    }
+//4
+export const handledeletecart = (id) => (dispatch) => {
+    console.log(id)
+    dispatch({ type: ActionTypes.DELETE_CART_PRODUCT, payload: id })
 }
+
+
 
 export const errorcartproduct = (error) => (dispatch) => {
     dispatch({ type: ActionTypes.CART_PRODUCT_ERROR, payload: error })

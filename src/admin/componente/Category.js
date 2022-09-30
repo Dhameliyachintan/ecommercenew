@@ -26,7 +26,7 @@ function Category(props) {
             // loadData()
             // dispatch(getcategorydata())
             dispatch(getproductdata())
-            // setProducts(products.product);
+            setProducts(products.product);
         },
         [])
 
@@ -132,7 +132,7 @@ function Category(props) {
                                                 <div className="card-body">
                                                     <h4 className="card-title lh-base">{val.productname}</h4>
                                                     <p className="card-price fw-bold">Price :{val.price}</p>
-                                                    <h4 className="card-title lh-base">{val.categories}</h4>
+                                                    <h4 className="card-name lh-base">{val.categories}</h4>
                                                     <h4 className="card-title lh-base">{val.desc}</h4>
                                                     <button href="#" className="btn btn-dark ms-3 px-3"  onClick={() => { handleproduct(val) }}>Read More</button>
                                                 </div>

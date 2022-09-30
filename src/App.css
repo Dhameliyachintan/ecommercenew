@@ -166,9 +166,9 @@
 }
 
 
-.card-images img{
-    height: 30vh;
-    object-fit: contain;
+.card-images img {
+  height: 30vh;
+  object-fit: contain;
 }
 
 .c-pointer {
@@ -176,3 +176,21 @@
 }
 
 
+/* deletecart */
+
+.deletecart {
+  cursor: pointer;
+}
+
+.prices {
+  background: var(--color-white-bg);
+  border-radius: 2px;
+  min-height: 47px;
+  box-shadow: 0 3px 5px 0 rgb(0 0 0 / 24%);
+}
+
+
+.order-class {
+  color: #388e3c !important;
+  display: block;
+}
