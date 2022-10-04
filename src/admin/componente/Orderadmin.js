@@ -30,7 +30,6 @@ function Orderadmin(props) {
                         <th>email</th>
                         <th>Phone</th>
                         <th>Address</th>
-                        <th>price</th>
                     </tr>
                 </tbody>
 
@@ -42,7 +41,6 @@ function Orderadmin(props) {
                                 <td>{o.email}</td>
                                 <td>{o.Phone}</td>
                                 <td>{o.Address}</td>
-                                <td>{o.price}</td>
                             </tr>
 
                         )

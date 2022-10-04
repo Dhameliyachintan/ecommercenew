@@ -34,7 +34,6 @@ function Placeorder(props) {
         email: yup.string().required('please enter price'),
         Phone: yup.string().required('please enter Phone'),
         Address: yup.string().required('please enter Address'),
-        price: yup.string().required('please enter price'),
     }
 
     let schema = yup.object().shape(product);
@@ -45,7 +44,6 @@ function Placeorder(props) {
             email: '',
             Phone: '',
             Address: '',
-            price : '',
         },
         validationSchema: schema,
         onSubmit: (value) => {
@@ -163,18 +161,6 @@ function Placeorder(props) {
                                                 defaultValue={formik.values.Address}
                                                 helperText={formik.errors.Address}
                                                 error={formik.errors.Address ? true : false}
-                                            />
-                                            <TextField
-                                                margin="dense"
-                                                id="price"
-                                                label="price"
-                                                name='price'
-                                                fullWidth
-                                                variant="standard"
-                                                onChange={formik.handleChange}
-                                                defaultValue={formik.values.price}
-                                                helperText={formik.errors.price}
-                                                error={formik.errors.price ? true : false}
                                             />
 
                                             <DialogActions>
