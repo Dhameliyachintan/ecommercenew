@@ -13,7 +13,7 @@ export const cartreducers = (state = initialState, action) => {
         const itemInCart = state.cart.find((item) => item.id === action.payload.id);
         if (itemInCart) {
           itemInCart.Quantity++;
-        } else {
+        } else { 
           state.cart.push(action.payload);
         }
             return {

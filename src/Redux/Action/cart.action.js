@@ -5,16 +5,6 @@ import *as ActionTypes from "../ActionTypes"
 export const addtocart = (d) => (dispatch, getState) => {
     console.log(d)
     console.log("d", getState().cart)
-    // getState().cart.cart((c) => {
-    //     if (c.id === d.id) {
-    //        return {
-    //            id : d.id,
-    //            Quantity : c.Quantity + 1
-    //        }
-    //     } else {
-    //         return c
-    //     }
-    // })
     dispatch({ type: ActionTypes.CARTADD_DATA, payload: { id: d.id, Quantity: 1 } })
 }
 //1

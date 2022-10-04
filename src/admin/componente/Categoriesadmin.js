@@ -220,31 +220,6 @@ function Categoriesadmin(props) {
                                         error={formik.errors.categoryname ? true : false}
 
                                     />
-                                    {/* <TextField
-                                        margin="dense"
-                                        id="price"
-                                        label="price"
-                                        name='price'
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={formik.handleChange}
-                                        defaultValue={formik.values.price}
-                                        helperText={formik.errors.price}
-                                        error={formik.errors.price ? true : false}
-                                    /> */}
-                                    {/* <TextField
-                                        margin="dense"
-                                        id="categories"
-                                        label="categories"
-                                        name='categories'
-                                        fullWidth
-                                        variant="standard"
-                                        onChange={formik.handleChange}
-                                        defaultValue={formik.values.categories}
-                                        helperText={formik.errors.categories}
-                                        error={formik.errors.categories ? true : false}
-
-                                    /> */}
                                     <input
                                         type="file"
                                         name="file"

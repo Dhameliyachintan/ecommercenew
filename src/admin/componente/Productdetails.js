@@ -1,10 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addtocart} from '../../Redux/Action/cart.action';
+import { addtocart } from '../../Redux/Action/cart.action';
 import { useHistory } from 'react-router-dom';
 
 function Productdetails(props) {
-    const [ Quantity , setQuantity ] = useState(1);
+    const [Quantity, setQuantity] = useState(1);
     const dispatch = useDispatch()
     const productval = [props.location.state]
     console.log(productval);
@@ -19,16 +19,16 @@ function Productdetails(props) {
 
     const Addtocart = (d) => {
         console.log(d)
-         const carts = {
-             id : d.id,
-             Quantity : Quantity
-         }
+        const carts = {
+            id: d.id,
+            Quantity: Quantity
+        }
 
         dispatch(addtocart(carts))
         history.push("/cart", d)
         console.log(d);
     }
-    
+
 
     // useEffect(() => {
     //     setData(cart.cart)
@@ -72,3 +72,7 @@ function Productdetails(props) {
 }
 
 export default Productdetails;
+
+<script>
+
+</script>

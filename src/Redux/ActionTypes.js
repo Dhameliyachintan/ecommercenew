@@ -52,3 +52,7 @@ export const CART_PRODUCT_ERROR = "CART_PRODUCT_ERROR"
 
 export const CARTGET_PRODUCT = "CARTGET_PRODUCT"
 export const CARTADD_PRODUCT = "CARTADD_PRODUCT"
+
+export const ADD_ORDER = "ADD_ORDER"
+export const GET_ORDER = "GET_ORDER"
+export const ERROR_ORDER = "ERROR_ORDER"

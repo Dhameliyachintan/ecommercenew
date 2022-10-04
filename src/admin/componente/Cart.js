@@ -1,20 +1,33 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import TextField from '@mui/material/TextField';
+import DialogActions from '@mui/material/DialogActions';
+import DialogContent from '@mui/material/DialogContent';
+import * as yup from 'yup';
+import { Form, Formik, useFormik } from 'formik';
+import Box from '@mui/material/Box';
+import Container from '@mui/material/Container';
+import Button from '@mui/material/Button';
 // import { removetocart } from '../../Redux/Action/cart.action';
 import { decrementcounter, handledeletecart, incrementcounter } from '../../Redux/Action/cart.action';
+import { addproductdata, getorderdata, getproductdata } from '../../Redux/Action/Product.action';
+import { addorder, getorder } from '../../Redux/Action/Order.action';
 
 function Cart(props) {
-    console.log(props.location.state);
+    // console.log(props.location.state);
+    const [open, setOpen] = React.useState(false);
+    const [data, setData] = useState([])
+    const [placeorder, setplaceorder] = useState(false)
+    const [button, setbutton] = useState(false)
+    const dispatch = useDispatch()
+
 
     const cart = useSelector(state => state.cart)
     console.log(cart);
 
     const products = useSelector(state => state.product)
     console.log(products);
-
-
-
-    const dispatch = useDispatch()
 
 
     const incrementcounters = (id) => {
@@ -29,7 +42,6 @@ function Cart(props) {
         dispatch(handledeletecart(id))
         console.log(id);
     }
-
 
 
 
@@ -52,13 +64,13 @@ function Cart(props) {
 
     filterdata.map((c) => {
         //console.log("11111111", parseInt(c.price), c.price, c.Quantity);
-        Total = c.Quantity * parseInt(c.price)
+        Total = c.Quantity * c.price
         TotalAmount = TotalAmount + Total;
     })
 
-    const Discount = Math.round(TotalAmount * 0.05);
+    const Discount = Math.round(TotalAmount * 0.08);
     // const DeliveryCharges = Math.round(TotalAmount + 0.05);
-    const FinalAmount = TotalAmount - Discount ;
+    const FinalAmount = TotalAmount - Discount;
 
 
 
@@ -72,11 +84,84 @@ function Cart(props) {
     console.log("filterdata", filterdata);
 
 
+    // const heandleplaceorder = () => {
+    //     setplaceorder(true)
+    // }
+
+
     return (
         <div className="container">
             <div className="row">
+
                 <div className='col-lg-6 mb-5 mt-5'>
-                    <table border="2px" cellPadding="20px" align='center'>
+
+                    {/* { placeorder ? */}
+                    {/* <Formik value={formik}>
+                            <Form onSubmit={formik.handleSubmit}>
+                                <DialogContent>
+                                    <TextField
+                                        margin="dense"
+                                        id="name"
+                                        label="name"
+                                        name='name'
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+                                        value={formik.values.name}
+                                        helperText={formik.errors.name}
+                                        error={formik.errors.name ? true : false}
+
+                                    />
+                                    <TextField
+                                        margin="dense"
+                                        id="email"
+                                        label="email"
+                                        name='email'
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+                                        defaultValue={formik.values.email}
+                                        helperText={formik.errors.email}
+                                        error={formik.errors.email ? true : false}
+                                    />
+                                    <TextField
+                                        margin="dense"
+                                        id="Phone"
+                                        label="Phone"
+                                        name='Phone'
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+                                        defaultValue={formik.values.Phone}
+                                        helperText={formik.errors.Phone}
+                                        error={formik.errors.Phone ? true : false}
+                                    />
+                                    <TextField
+                                        margin="dense"
+                                        id="Address"
+                                        label="Address"
+                                        name='Address'
+                                        fullWidth
+                                        variant="standard"
+                                        onChange={formik.handleChange}
+                                        defaultValue={formik.values.Address}
+                                        helperText={formik.errors.Address}
+                                        error={formik.errors.Address ? true : false}
+                                    />
+
+                                    <DialogActions>
+
+                                        <Button type="submit">Submit</Button>
+
+                                    </DialogActions>
+                                </DialogContent>
+
+                            </Form>
+                        </Formik> */}
+
+                    :
+
+                    <table border="1px" cellPadding="20px" align='center'>
                         <tbody>
                             <tr align="center">
                                 <th>image</th>
@@ -106,6 +191,17 @@ function Cart(props) {
                             })
                         }
                     </table>
+                    {/* } */}
+
+                    <div className="place-order">
+                        {/* <button onClick={heandleplaceorder}>Place Order</button> */}
+                        <NavLink to={{
+                            pathname: '/Placeorder',
+                            state: { cart: filterdata }
+                        }}>
+                            Place Order
+                        </NavLink>
+                    </div>
                 </div>
                 <div className="col-lg-6 mb-5 mt-5 p-2">
                     <div className="prices p-3">
@@ -120,7 +216,7 @@ function Cart(props) {
                             <div className="total p-3">
                                 <div class="d-flex justify-content-between">
                                     <span class="prices-1 text-dark">Discount(10%)</span>
-                                    <span className='text-dark'> −  {Discount}</span>
+                                    <span className='text-dark'>-{Discount}</span>
                                 </div>
                             </div>
                             <div className="total p-3 border-bottom">

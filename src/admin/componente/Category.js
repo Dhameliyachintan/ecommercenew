@@ -1,9 +1,7 @@
 // import { Select } from 'react-select';
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import { useHistory } from 'react-router-dom';
-import { getcategorydata } from '../../Redux/Action/categeries.action';
 import { getproductdata } from '../../Redux/Action/Product.action';
 
 function Category(props) {
