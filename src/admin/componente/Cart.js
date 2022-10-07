@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 import TextField from '@mui/material/TextField';
 import DialogActions from '@mui/material/DialogActions';
 import DialogContent from '@mui/material/DialogContent';
@@ -16,11 +16,11 @@ import { addorder, getorder } from '../../Redux/Action/Order.action';
 
 function Cart(props) {
     // console.log(props.location.state);
-    const [open, setOpen] = React.useState(false);
-    const [data, setData] = useState([])
     const [placeorder, setplaceorder] = useState(false)
     const [button, setbutton] = useState(false)
     const dispatch = useDispatch()
+
+    const history = useHistory()
 
 
     const cart = useSelector(state => state.cart)
@@ -55,6 +55,7 @@ function Cart(props) {
                     Quantity: c.Quantity
                 }
                 filterdata.push(data);
+                // filterdata.push(p);
             }
         })
     })
@@ -75,11 +76,6 @@ function Cart(props) {
 
 
     console.log("cart.cart", Total);
-
-    // useEffect(() => {
-    //     dispatch(getproductdata())
-    //     dispatch(gettocart())
-    // })
 
     console.log("filterdata", filterdata);
 

@@ -35,6 +35,11 @@ export const googleActionLogin = () => (dispatch) => {
     dispatch({ type: ActionTypes.GOOGLELOGIN_USER })
 }
 
+
+export const FacebookLogin = () => (dispatch) => {
+    dispatch({ type: ActionTypes.FACEBOOK_LOGIN })
+}
+
 export const forgetActionpassword = (data) => (dispatch) => {
     dispatch({ type: ActionTypes.FORGET_PASSWORD_USER, payload: data })
 }

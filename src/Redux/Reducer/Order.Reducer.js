@@ -20,7 +20,7 @@ export const orderreducer = (state = initialState, action) => {
             return {
                 ...state,
                 isLoading: false,
-                cart: action.payload,
+                order: action.payload,
                 errors: ''
             }
         default:

@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
 import { Form, Formik, useFormik } from 'formik';
-import { forgetActionpassword, googleActionLogin, LoginAction, signupAction } from '../Redux/Action/auth.Action';
+import { FacebookLogin, forgetActionpassword, googleActionLogin, LoginAction, signupAction } from '../Redux/Action/auth.Action';
 
 function Logins(props) {
     const [userType, setUserType] = useState('Login')
@@ -55,6 +55,12 @@ function Logins(props) {
     const handlepassword = (values) => {
         // alert(JSON.stringify(values.email));
         dispatch(forgetActionpassword(values))
+    }
+
+
+    const handleActionfacebook = (values) => {
+        // alert(JSON.stringify(values.email));
+        dispatch(FacebookLogin(values))
     }
 
 
@@ -175,7 +181,7 @@ function Logins(props) {
                                             <div className="validate" />
                                         </div>
                                 }
-                                
+
                                 {
                                     reset ?
                                         <div className="text-center">
@@ -210,10 +216,15 @@ function Logins(props) {
                                 }
                             </div>
                             <div className='text-center'>
-                                    <button onClick={() => handleActionlogin()} className="button-google">
-                                        <img src="images/google.png" alt="" width="40"/> Sign up google
-                                    </button>
-                                </div>
+                                <button onClick={() => handleActionlogin()} className="button-google">
+                                    <img src="images/google.png" alt="" width="40" /> Sign up google
+                                </button>
+                            </div>
+                            <div className='text-center'>
+                                <button onClick={() => handleActionfacebook()} className="button-facebook">
+                                    <img src="images/logo-facebookpng-32204.png" alt="" width="40" /> Sign with facebook
+                                </button>
+                            </div>
                         </Form>
                     </Formik>
                 </div>

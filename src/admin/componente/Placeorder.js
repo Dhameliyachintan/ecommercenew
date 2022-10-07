@@ -14,7 +14,7 @@ import { useHistory } from 'react-router-dom';
 function Placeorder(props) {
     console.log(props.location.state);
     const [open, setOpen] = React.useState(false);
-    const [data, setData] = useState([])
+    // const [data, setData] = useState([])
     const dispatch = useDispatch()
 
     const history = useHistory()
@@ -53,7 +53,7 @@ function Placeorder(props) {
                 cart: props.location.state.cart
             }
             console.log("OrderData", OrderData)
-            // history.push('/Orderadmin', OrderData)
+            history.push('/Orderadmin', OrderData)
             handleSubmitdata(OrderData)
             // resetForm();
         }
