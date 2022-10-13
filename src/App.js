@@ -16,14 +16,14 @@ import PrivateRoute from './container/Route/PrivateRoute';
 import { Provider } from 'react-redux';
 import { Configreducer, persistor, store } from './Redux/Store';
 import { SnackbarProvider } from 'notistack';
-import Category from './admin/componente/Category';
 import Productadmin from './admin/componente/Productadmin';
 import Categoriesadmin from './admin/componente/Categoriesadmin';
-import Productdetails from './admin/componente/Productdetails';
-import Cart from './admin/componente/Cart';
 import { PersistGate } from 'redux-persist/integration/react'
-import Placeorder from './admin/componente/Placeorder';
 import Orderadmin from './admin/componente/Orderadmin';
+import Productdetails from './admin/container/Productdetails';
+import Category from './admin/container/Category';
+import Placeorder from './admin/container/Placeorder';
+import Cart from './admin/container/Cart';
 
 
 function App() {
