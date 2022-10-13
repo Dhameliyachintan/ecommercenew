@@ -36,7 +36,7 @@ function App() {
           <Provider store={store}>
             <Header />
             <Switch>
-              <PublicRoute exact path={"/"} component={Home} />
+              <PublicRoute exact path={"/Home"} component={Home} />
               <PublicRoute exact path={"/About"} component={About} />
               <PrivateRoute exact path={"/Testimonial"} component={Testimonial} />
               <PublicRoute exact path={"/Product"} component={Product} />

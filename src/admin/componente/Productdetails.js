@@ -40,7 +40,7 @@ function Productdetails(props) {
 
     return (
         <>
-            {productval.map((d) => {
+            {productval.map((val) => {
                 // const { id, productname, price, url, categories } = values
                 return (
                     <>
@@ -49,15 +49,15 @@ function Productdetails(props) {
                                 <div className='row align-items-center justify-content-center'>
                                     <div className="col-sm-4">
                                         <div className="product-images">
-                                            <img src={d.url} alt="" className="img-fluid" width="50%" />
+                                            <img src={val.url} alt="" className="img-fluid" width="50%" />
                                         </div>
                                     </div>
                                     <div className="col-sm-8">
                                         <div className="product-details">
-                                            <h4 className="product-name lh-base mb-3">{d.productname}</h4>
-                                            <h5 className="product-desc lh-base fw-normal mb-3">{d.desc}</h5>
-                                            <p className="product-price fw-bold mb-3">Price :{d.price}</p>
-                                            <button href="#" className="btn btn-dark px-3" onClick={() => Addtocart(d)}>Add to cart</button>
+                                            <h5 className="product-desc lh-base fw-normal mb-3">{val.productname}</h5>
+                                            <p className="product-price fw-bold mb-3">${val.price}</p>
+                                            <p className="product-price mb-3">{val.desc}</p>
+                                            <button href="#" className="btn btn-dark px-3" onClick={() => Addtocart(val)}>Add to cart</button>
                                             <button href="#" className="btn btn-dark px-4 ms-3" >Buy Now</button>
                                         </div>
                                     </div>

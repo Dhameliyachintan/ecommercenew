@@ -26,7 +26,7 @@ function Productadmin(props) {
     const products = useSelector(state => state.product)
     console.log(products);
     const categorys = useSelector(state => state.category)
-    console.log(categorys.category);
+    console.log("categorys.category", categorys.category);
 
 
     const handleClickOpen = () => {
@@ -95,16 +95,37 @@ function Productadmin(props) {
         () => {
             loadData()
             dispatch(getproductdata(data))
-            // dispatch(getcategorydata(data))
+            dispatch(getcategorydata(data))
         },
         [])
 
     const columns = [
 
-        { field: 'id', headerName: 'id', width: 130, },
+        // { field: 'id', headerName: 'id', width: 130, },
         { field: 'productname', headerName: 'productname', width: 130, },
         { field: 'price', headerName: ' Price', width: 130 },
-        { field: 'categories', headerName: 'categories', width: 130 },
+        {
+            field: 'categories', headerName: 'categories', width: 130,
+            renderCell: (params) => (
+                categorys.category.map((d) => {
+                    console.log("paramsparams", params);
+                    if (d.id === params.formattedValue) {
+                        return <div>{d.categoryname}</div>
+                    }
+                })
+
+            )
+        },
+        {
+            field: 'url', headerName: 'Image', width: 130,
+            renderCell: (params) => (
+                <>
+                    <img src={params.row.url} width={50} height={50} />
+                </>
+            )
+
+        },
+        { field: 'desc', headerName: 'desc', width: 130 },
         {
             field: 'delete', headerName: 'Delete', width: 130,
             renderCell: (params) => (
@@ -125,16 +146,6 @@ function Productadmin(props) {
                 </>
             )
         },
-        {
-            field: 'url', headerName: 'Image', width: 130,
-            renderCell: (params) => (
-                <>
-                    <img src={params.row.url} width={50} height={50} />
-                </>
-            )
-
-        },
-        { field: 'desc', headerName: 'desc', width: 130 },
     ];
 
     const handleEdit = (params) => {
@@ -181,6 +192,7 @@ function Productadmin(props) {
     let fdata = filterdata.length > 0 ? filterdata : products.product
 
 
+    console.log("categorys", categorys.category);
 
     return (
         <Box>
@@ -256,20 +268,25 @@ function Productadmin(props) {
                                         error={formik.errors.desc ? true : false}
                                     />
 
-                                    <select name="categories" className='form-select' onChange={formik.handleChange}>
+                                    <select
+                                        name="categories"
+                                        id="categories"
+                                        value={formik.values.categories}
+                                        error={formik.errors.categories ? true : false}
+                                        className='form-select' onChange={formik.handleChange}>
                                         {
-                                            categorys.category.map((values) => {
-                                                const { id, categoryname } = values
+                                            categorys.category.map((c) => {
                                                 return (
-                                                    <option value={categoryname}>{categoryname}</option>
+                                                    <option value={c.categoryname}>{c.categoryname}</option>
                                                 )
                                             })
                                         }
                                     </select>
+
                                     {/* <TextField
                                         margin="dense"
-                                        id="categories"
                                         label="categories"
+                                        id="categories"
                                         name='categories'
                                         fullWidth
                                         variant="standard"

@@ -96,10 +96,19 @@ function Categoriesadmin(props) {
 
     const columns = [
 
-        { field: 'id', headerName: 'id', width: 130 },
+        // { field: 'id', headerName: 'id', width: 130 },
         { field: 'categoryname', headerName: 'categoryname', width: 130 },
         // { field: 'price', headerName: ' Price', width: 130 },
         // { field: 'categories', headerName: 'categories', width: 130 },
+        {
+            field: 'url', headerName: 'Image', width: 130,
+            renderCell: (params) => (
+                <>
+                    <img src={params.row.url} width={50} height={50} />
+                </>
+            )
+
+        },
         {
             field: 'delete', headerName: 'Delete', width: 130,
             renderCell: (params) => (
@@ -119,15 +128,6 @@ function Categoriesadmin(props) {
                     </IconButton>
                 </>
             )
-        },
-        {
-            field: 'url', headerName: 'Image', width: 130,
-            renderCell: (params) => (
-                <>
-                    <img src={params.row.url} width={50} height={50} />
-                </>
-            )
-
         }
     ];
 
@@ -167,7 +167,7 @@ function Categoriesadmin(props) {
     }
 
 
-    let fdata = filterdata.length > 0 ? filterdata :  categorys.category
+    let fdata = filterdata.length > 0 ? filterdata : categorys.category
 
 
 
@@ -181,16 +181,16 @@ function Categoriesadmin(props) {
                             Add category
                         </Button>
                     </center>
-                    
-                    <div style={{ height: 400, width: '100%' }}>
-                    <TextField
-                        type="text"
-                        id='search'
-                        label='search'
-                        variant='standard'
-                        onChange={(e) => handleSearch(e.target.value)}
 
-                    />
+                    <div style={{ height: 400, width: '100%' }}>
+                        <TextField
+                            type="text"
+                            id='search'
+                            label='search'
+                            variant='standard'
+                            onChange={(e) => handleSearch(e.target.value)}
+
+                        />
                         <DataGrid
                             rows={fdata}
                             columns={columns}
@@ -202,7 +202,7 @@ function Categoriesadmin(props) {
                     </div>
                     <Dialog open={open} onClose={handleClose}>
                         <DialogTitle>
-                        Add category
+                            Add category
                         </DialogTitle>
                         <Formik value={formik}>
                             <Form onSubmit={formik.handleSubmit}>

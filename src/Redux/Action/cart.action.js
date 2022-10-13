@@ -30,6 +30,11 @@ export const handledeletecart = (id) => (dispatch) => {
     dispatch({ type: ActionTypes.DELETE_CART_PRODUCT, payload: id })
 }
 
+export const handleempty = () => (dispatch) => {
+    console.log("emptycart");
+    dispatch({ type: ActionTypes.EMPTY_CART_PRODUCT })
+}
+
 
 
 export const errorcartproduct = (error) => (dispatch) => {

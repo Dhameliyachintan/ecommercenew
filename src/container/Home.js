@@ -1,6 +1,95 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory } from 'react-router-dom';
+import { decrementcounter, incrementcounter } from '../Redux/Action/cart.action';
+import { getproductdata } from '../Redux/Action/Product.action';
 
 function Home(props) {
+    const [product, setProducts] = useState([])
+    const [filterdata, setfilterdata] = useState([])
+    const history = useHistory()
+
+    const products = useSelector(state => state.product)
+    console.log(products);
+    const categorys = useSelector(state => state.category)
+    console.log(categorys);
+    console.log("product", products.product);
+
+    const dispatch = useDispatch()
+    // const history = useHistory()
+
+    useEffect(
+        () => {
+            // loadData()
+            // dispatch(getcategorydata())
+            dispatch(getproductdata())
+            setProducts(products.product);
+        },
+        [])
+
+    const categoryList = [
+        "ALL",
+        ...new Set(
+            products.product.map((categoryitem) => {
+                return categoryitem.categories;
+            })
+
+        ),
+    ];
+
+
+    // console.log("uniqcategory", categoryList);
+
+    const filter = (categories) => {
+        console.log("categories", categories);
+        if (categories === "All") {
+            setProducts(products);
+            return;
+        }
+
+        const categoryList = products.product.filter((categoryitem1) => {
+            return (
+                categoryitem1.categories === categories
+            )
+
+        });
+        setProducts(categoryList);
+        console.log("categoryList", categoryList);
+    };
+
+
+
+    let finaldata = product.length > 0 ? product : products.product;
+    console.log(finaldata);
+
+
+    // let categorydata = category.length > 0 ? category : categorys.category;
+    const handleSearch = (val) => {
+        // let localdata = JSON.parse(localStorage.getItem("product"))
+
+        let fdata = finaldata.filter((d) => (
+            d.id.toString().includes(val) ||
+            d.productname.toString().toLowerCase().includes(val.toLowerCase()) ||
+            d.categories.toString().includes(val.toLowerCase()) ||
+            d.price.toString().includes(val)
+        ))
+
+        console.log(fdata);
+
+        setfilterdata(fdata)
+        // console.log(val);
+    }
+
+
+    let fdata = filterdata.length > 0 ? filterdata : products.product
+
+
+    const handleproduct = (val) => {
+        console.log(val)
+        history.push('/Productdetails', val)
+    }
+
+
     return (
         <div>
             <section className="slider_section ">
@@ -12,19 +101,19 @@ function Home(props) {
                                     <div className="col-md-6">
                                         <div className="detail-box">
                                             <h1>
-                                                Welcome to our shop
+                                                Roco Wireless Headphone
                                             </h1>
-                                            <p>
+                                            {/* <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                                            </p>
-                                            <a href>
-                                                Read More
+                                            </p> */}
+                                            <a href className='text=white'>
+                                                Shop Now
                                             </a>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="img-box">
-                                            <img src="images/slider-img.png" alt />
+                                            <img src="images/big-billion-day.webp" alt width={100} />
                                         </div>
                                     </div>
                                 </div>
@@ -36,19 +125,19 @@ function Home(props) {
                                     <div className="col-md-6">
                                         <div className="detail-box">
                                             <h1>
-                                                Welcome to our shop
+                                                Smart Digital <br></br> Watch
                                             </h1>
-                                            <p>
+                                            {/* <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                                            </p>
+                                            </p> */}
                                             <a href>
-                                                Read More
+                                                Shop Now
                                             </a>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="img-box">
-                                            <img src="images/slider-img.png" alt />
+                                            <img src="images/product-39.png" alt width={100} />
                                         </div>
                                     </div>
                                 </div>
@@ -60,19 +149,19 @@ function Home(props) {
                                     <div className="col-md-6">
                                         <div className="detail-box">
                                             <h1>
-                                                Welcome to our shop
+                                                Welcome to our<br></br> shop
                                             </h1>
-                                            <p>
+                                            {/* <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iste quam velit saepe dolorem deserunt quo quidem ad optio.
-                                            </p>
+                                            </p> */}
                                             <a href>
-                                                Read More
+                                                Shop Now
                                             </a>
                                         </div>
                                     </div>
                                     <div className="col-md-6">
                                         <div className="img-box">
-                                            <img src="images/slider-img.png" alt />
+                                            <img src="images/product-38.png" alt />
                                         </div>
                                     </div>
                                 </div>
@@ -94,281 +183,62 @@ function Home(props) {
             {/* end slider section */}
             {/* product section */}
             <section className="product_section layout_padding">
-                <div className="container">
-                    <div className="heading_container heading_center">
-                        <h2>
-                            Our Products
-                        </h2>
-                    </div>
-                    <div className="row">
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p1.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
+                {/* category */}
+                <div className='mt-5 mb-5'>
+                    <div className='container mx-2 '>
+                        {/* <input
+                            type="text"
+                            id='search'
+                            label='search'
+                            variant='standard'
+                            placeholder='search'
+                            onChange={(e) => { handleSearch(e.target.value) }}
+
+                        /> */}
+                        <div className="container">
+                            <div className='row mt-5 mx-2 justify-content-center'>
+                                <div className="col-xl-6">
+                                    {/* <Navbar filter={filter} categoryList={categoryList} /> */}
+                                    <div className="d-flex pb-4">
+                                        {categoryList.map((valcatagory, index) => {
+                                            return (
+                                                <li className="nav-link btn btn-dark text-white mx-3" key={index} data-filter="" onClick={() => filter(valcatagory)}>{valcatagory}</li>
+
+                                            )
+                                        })}
+                                    </div>
                                 </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
+
+                                <div className="col-xl-12">
+                                    <div className="row">
+                                        {finaldata.map((val, id) => {
+                                            // const { id, productname, price, url, categories } = values
+                                            return (
+                                                <>
+                                                    <div className="card-images col-md-3 mb-4">
+                                                        <div className="card px-0 border-1">
+
+                                                            <img onClick={() => { handleproduct(val) }} src={val.url} className="px-0 card-img-top w-100" alt="..." />
+                                                            <div className="card-body">
+                                                                <h4 className="card-title lh-base">{val.productname}</h4>
+                                                                <p className="card-price fw-bold">{val.price}</p>
+                                                                <h4 className="card-name lh-base">{val.categories}</h4>
+                                                                <h4 className="card-title lh-base">{val.desc}</h4>
+                                                                {/* <button href="#" className="btn btn-dark ms-3 px-3" onClick={() => { handleproduct(val) }}>Read More</button> */}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </>
+                                            )
+                                        })}
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p2.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p3.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p4.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p5.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p6.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p7.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p8.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div className="col-sm-6 col-lg-4">
-                            <div className="box">
-                                <div className="img-box">
-                                    <img src="images/p9.png" alt />
-                                    <a href className="add_cart_btn">
-                                        <span>
-                                            Add To Cart
-                                        </span>
-                                    </a>
-                                </div>
-                                <div className="detail-box">
-                                    <h5>
-                                        Product Name
-                                    </h5>
-                                    <div className="product_info">
-                                        <h5>
-                                            <span>$</span> 300
-                                        </h5>
-                                        <div className="star_container">
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                            <i className="fa fa-star" aria-hidden="true" />
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div className="btn_box">
-                        <a href className="view_more-link">
-                            View More
-                        </a>
                     </div>
                 </div>
+                {/* category end */}
+
             </section>
             {/* end product section */}
             {/* about section */}

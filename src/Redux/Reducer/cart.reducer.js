@@ -10,12 +10,12 @@ export const cartreducers = (state = initialState, action) => {
     console.log(action.type, action.payload);
     switch (action.type) {
         case ActionTypes.CARTADD_DATA: //2
-        const itemInCart = state.cart.find((item) => item.id === action.payload.id);
-        if (itemInCart) {
-          itemInCart.Quantity++;
-        } else { 
-          state.cart.push(action.payload);
-        }
+            const itemInCart = state.cart.find((item) => item.id === action.payload.id);
+            if (itemInCart) {
+                itemInCart.Quantity++;
+            } else {
+                state.cart.push(action.payload);
+            }
             return {
                 ...state,
                 isLoading: false,
@@ -34,6 +34,13 @@ export const cartreducers = (state = initialState, action) => {
                 ...state,
                 isLoading: false,
                 cart: state.cart.filter((d) => d.id !== action.payload),
+                errors: ''
+            }
+        case ActionTypes.EMPTY_CART_PRODUCT:
+            return {
+                ...state,
+                isLoading: false,
+                cart: [],
                 errors: ''
             }
         case ActionTypes.CART_INCREMENTCOUNTER: //3

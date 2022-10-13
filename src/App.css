@@ -74,6 +74,15 @@
   margin-top: 20px;
 }
 
+.button-facebook {
+  width: 200px;
+  height: 50px;
+  border: 1px solid #00000063;
+  background: transparent;
+  border-radius: 30px 30px 30px 30px;
+  margin-top: 20px;
+}
+
 .product_section .box .img-box .add_cart_btn {
   cursor: pointer;
 }
@@ -186,7 +195,7 @@
   background: var(--color-white-bg);
   border-radius: 2px;
   min-height: 47px;
-  box-shadow: 0 3px 5px 0 rgb(0 0 0 / 24%);
+  box-shadow: 0 -1px 4px 0 rgba(0 0 0 / 24%);
 }
 
 
@@ -196,12 +205,12 @@
 }
 
 .place-order {
-  padding: 11px 3px 69px 65px;
+  padding: 26px 22px 51px 46px;
   box-shadow: 0 -2px 10px 0 rgb(0 0 0 / 10%);
   height: 57px;
-  width: 89.5%;
+  width: auto;
   text-align: right;
-  margin-left: 33px;
+  /* margin-left: 33px; */
 }
 
 .place-order button {
@@ -217,4 +226,92 @@
   font-size: 16px;
   font-weight: 500;
   margin-right: 15px;
+}
+
+
+.place-order a {
+  background: #fb641b;
+  box-shadow: 0 1px 2px 0 rgb(0 0 0 / 20%);
+  border: none;
+  color: #fff;
+  padding: 16px 67px;
+  min-width: 250px;
+  text-transform: uppercase;
+  border-radius: 2px;
+  box-shadow: 0 2px 2px 0 rgb(0 0 0 / 10%);
+  font-size: 16px;
+  font-weight: 500;
+  text-decoration: none;
+}
+
+.detail-box h1 {
+  font-size: 60px;
+}
+
+input#search {
+  padding: 0;
+  margin-top: 15px;
+}
+
+
+.slider_section .carousel_btn_box {
+  position: absolute;
+  bottom: 10%;
+  left: 50%;
+  display: flex;
+  justify-content: space-between;
+  width: 110px;
+  height: 50px;
+  transform: translateY(100%);
+  z-index: 3;
+  padding-top: 47px;
+  margin-left: 15px;
+  position: static;
+}
+
+.info_contact i {
+  padding-right: 15px;
+}
+
+.info_links a {
+  text-decoration: none;
+}
+
+.info_section .info_form .social_box {
+  display: none;
+}
+
+.reset-button button {}
+
+.php-email-form form {
+  box-shadow: 0px -2px 12px -8px #000000bd;
+  padding: 60px 0;
+  width: 50%;
+}
+
+.margin-top {
+  margin-top: 15px;
+}
+
+
+
+.Logins, .signups, .forgetpassword {
+  display: inline-block;
+  padding: 10px 45px;
+  background-color: #3a4468;
+  color: #ffffff;
+  border-radius: 5px;
+  border: 1px solid #3a4468;
+  transition: all 0.3s;
+  margin-top: 15px;
+}
+
+.input-text input#search {
+    padding: 10px;
+    margin-top: 15px;
+}
+
+label+.css-1ptx2yq-MuiInputBase-root-MuiInput-root {
+  margin-top: 16px;
+  margin-bottom: 15px;
 }

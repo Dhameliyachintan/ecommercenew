@@ -95,16 +95,17 @@ function Category(props) {
         <>
             {/* Start Banner Area */}
             <div className='container mx-2 '>
-                <input
-                    type="text"
-                    id='search'
-                    label='search'
-                    variant='standard'
-                    placeholder='search'
-                    onChange={(e) => { handleSearch(e.target.value) }}
-
-                />
-                <div className='row mt-5 mx-2'>
+                <div className="input-text mb-4">
+                    <input
+                        type="text"
+                        id='search'
+                        label='search'
+                        variant='standard'
+                        placeholder='search'
+                        onChange={(e) => { handleSearch(e.target.value) }}
+                    />
+                </div>
+                <div className='row mt-5 mx-2 justify-content-center'>
                     <div className="col-xl-6">
                         {/* <Navbar filter={filter} categoryList={categoryList} /> */}
                         <div className="d-flex pb-4">
@@ -126,13 +127,13 @@ function Category(props) {
                                         <div className="card-images col-md-3 mb-4">
                                             <div className="card px-0 border-1">
 
-                                                <img src={val.url} className="px-0 card-img-top w-100" alt="..." />
+                                                <img onClick={() => { handleproduct(val) }} src={val.url} className="px-0 card-img-top w-100" alt="..." />
                                                 <div className="card-body">
                                                     <h4 className="card-title lh-base">{val.productname}</h4>
                                                     <p className="card-price fw-bold">Price :{val.price}</p>
                                                     <h4 className="card-name lh-base">{val.categories}</h4>
                                                     <h4 className="card-title lh-base">{val.desc}</h4>
-                                                    <button href="#" className="btn btn-dark ms-3 px-3"  onClick={() => { handleproduct(val) }}>Read More</button>
+                                                    {/* <button href="#" className="btn btn-dark ms-3 px-3"  onClick={() => { handleproduct(val) }}>Read More</button> */}
                                                 </div>
                                             </div>
                                         </div>

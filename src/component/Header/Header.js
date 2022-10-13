@@ -10,8 +10,9 @@ function Header(props) {
     const auth = useSelector(state => state.auth)
     // console.log(auth);
 
-    // const cart = useSelector(state => state.cart)
-    // console.log(cart);
+    const cart = useSelector(state => state.cart)
+    const cartitem = cart.cart.length
+    console.log(cart);
     // console.log(categorys);
 
     const dispatch = useDispatch()
@@ -23,61 +24,21 @@ function Header(props) {
 
     return (
         <header className="header_section">
-            <div className="header_top">
-                <div className="container-fluid">
-                    <div className="top_nav_container">
-                        <div className="contact_nav">
-                            <a href>
-                                <i className="fa fa-phone" aria-hidden="true" />
-                                <span>
-                                    Call : +01 123455678990
-                                </span>
-                            </a>
-                            <a href>
-                                <i className="fa fa-envelope" aria-hidden="true" />
-                                <span>
-                                    Email : demo@gmail.com
-                                </span>
-                            </a>
-                        </div>
-                        <from className="search_form">
-                            <input type="text" className="form-control" placeholder="Search here..." />
-                            <button className type="submit">
-                                <i className="fa fa-search" aria-hidden="true" />
-                            </button>
-                        </from>
-                        <div className="user_option_box">
-                            <a href className="account-link">
-                                <i className="fa fa-user" aria-hidden="true" />
-                                <span>
-                                    My Account
-                                </span>
-                            </a>
-                            <button type="button" class="btn btn-primary position-relative">
-                                <i className="fa fa-shopping-cart" aria-hidden="true" />
-                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
-                                    {/* {cart.cart} */}
-                                </span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
             <div className="header_bottom">
                 <div className="container-fluid">
                     <nav className="navbar navbar-expand-lg custom_nav-container ">
-                        <a className="navbar-brand" href="index.html">
+                        <NavLink exact to={"/"} className="navbar-brand" href="index.html">
                             <span>
-                                Minics
+                                <img src="images/cartpng.png" alt className="img-fluid" width="100px"/>
                             </span>
-                        </a>
+                        </NavLink>
                         <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                             <span className> </span>
                         </button>
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ">
                                 <li className="nav-item active">
-                                    <NavLink exact to={"/"} className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></NavLink>
+                                    <NavLink exact to={"/Home"} className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></NavLink>
                                     {/* <NavLink exact to={"/Home"} ClassName="nav-link scrollto active">Home</NavLink> */}
                                 </li>
                                 <li className="nav-item">
@@ -120,13 +81,13 @@ function Header(props) {
                                 </li>
                                 <li className="nav-item">
                                     {/* <a className="nav-link" href="why.html">Why Us</a> */}
-                                    <NavLink exact to={"/Why"} className="nav-link" href="why.html">Why Us</NavLink>
+                                    {/* <NavLink exact to={"/Why"} className="nav-link" href="why.html">Why Us</NavLink> */}
                                 </li>
                                 <li className="nav-item">
                                     {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
-                                    <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink>
+                                    {/* <NavLink exact to={"/Testimonial"} className="nav-link" href="testimonial.html">Testimonial</NavLink> */}
                                 </li>
-                                
+
                                 {
                                     auth.user === null ?
                                         <li className="nav-item">
@@ -139,6 +100,12 @@ function Header(props) {
                                         </li>
                                 }
                             </ul>
+                            <button type="button" class="btn btn-primary position-relative">
+                                <a href="/Cart" className='text-white'><i className="fa fa-shopping-cart" aria-hidden="true" /></a>
+                                <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
+                                    {cartitem}
+                                </span>
+                            </button>
                         </div>
                         <Alert />
                     </nav>

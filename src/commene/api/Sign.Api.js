@@ -1,6 +1,7 @@
 import { createUserWithEmailAndPassword, onAuthStateChanged, sendEmailVerification, sendPasswordResetEmail, signInWithEmailAndPassword, signInWithPopup, signOut } from "firebase/auth";
 import { GoogleAuthProvider, FacebookAuthProvider } from "firebase/auth";
-import { auth, authentication } from "../../Firebase"
+import { doc, setDoc, updateDoc, getDoc } from "firebase/firestore";
+import { auth, authentication, db, } from "../../Firebase"
 
 // SignAPI
 
@@ -24,13 +25,21 @@ export const SignAPI = (data) => {
                 // ...
             })
             .then((emailverified) => {
-                onAuthStateChanged(auth, (user) => {
+                onAuthStateChanged(auth, async (user) => {
                     if (user) {
                         if (user.emailVerified) {
                             resolve({ payload: "Email Sucessfull" })
                             // console.log("Email Sucessfull");
                         } else {
                             resolve({ payload: "Please verify your Email" })
+                            await setDoc(doc(db, "users", user.uid), {
+                                email: data.email,
+                                role: "user",
+                                emailVerified: user.emailVerified
+                            })
+                                .then(() => console.log("user added"))
+                                .catch((error) => console.log(error.code))
+
                             // console.log("Please verify your Email");
                         }
                     } else {
@@ -61,10 +70,18 @@ export const LoginAPI = (data) => {
 
         signInWithEmailAndPassword(auth, data.email, data.password)
 
-            .then((user) => {
-                console.log(user);
+            .then(async (user) => {
+                console.log(user.user.uid);
                 if (user.user.emailVerified) {
-                    resolve({ payload: user.user });
+                    const userRef = doc(db, "users", user.user.uid);
+                    await updateDoc(userRef, {
+                        emailVerified: true
+                    })
+                    resolve({ payload: user.user.uid });
+                    const userRefGet = doc(db, "users", user.user.uid);
+                    const userSnap = await getDoc(userRefGet);
+                    console.log({ id: userSnap.id, ...userSnap.data() });
+                    resolve({ id: userSnap.id, ...userSnap.data() });
                 }
                 else {
                     reject({ payload: "please verfity your email" });

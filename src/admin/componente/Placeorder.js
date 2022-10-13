@@ -10,6 +10,7 @@ import { Form, Formik, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addorder, getorder } from '../../Redux/Action/Order.action';
 import { useHistory } from 'react-router-dom';
+import { handleempty } from '../../Redux/Action/cart.action';
 
 function Placeorder(props) {
     console.log(props.location.state);
@@ -17,11 +18,8 @@ function Placeorder(props) {
     // const [data, setData] = useState([])
     const dispatch = useDispatch()
 
-    const history = useHistory()
-    // const products = useSelector(state => state.product)
-    // console.log(products);
-    // const categorys = useSelector(state => state.category)
-    // console.log(categorys.category);
+    let history = useHistory();
+
     const cart = useSelector(state => state.cart)
     console.log(cart);
 
@@ -30,10 +28,10 @@ function Placeorder(props) {
 
 
     let product = {
-        name: yup.string().required('enter name'),
-        email: yup.string().required('please enter price'),
-        Phone: yup.string().required('please enter Phone'),
-        Address: yup.string().required('please enter Address'),
+        name: yup.string().required('please enter name').matches(/[abcdefghijklmnopqrstuvwxyz]+/ , 'Is not in correct format'),
+        email: yup.string().required('please enter email'),
+        Phone: yup.string().required('please enter Phone').max(10, "Must be 10 digit number"),
+        Address: yup.string().required('please enter Address').max(100, "Must be 100 digit number"),
     }
 
     let schema = yup.object().shape(product);
@@ -45,26 +43,27 @@ function Placeorder(props) {
             Phone: '',
             Address: '',
         },
-        validationSchema: schema,
-        onSubmit: (value) => {
+        validationSchema: schema,   
+        onSubmit: (value, { resetForm }) => {
             console.log(value)
             let OrderData = {
                 ...value,
                 cart: props.location.state.cart
             }
             console.log("OrderData", OrderData)
-            history.push('/Orderadmin', OrderData)
-            handleSubmitdata(OrderData)
-            // resetForm();
+            // dispatch(addorder(OrderData))
+            // setOpen(false);
+            dispatch(addorder(OrderData))
+            // handleSubmitdata(OrderData)
+            history.push('/Home');
+            dispatch(handleempty())
+            resetForm();
         }
     })
-
-    const handleSubmitdata = (OrderData) => {
-        console.log(OrderData)
-        dispatch(addorder(OrderData))
-        setOpen(false);
-
-    }
+    
+    // const handleSubmitdata = (OrderData) => {
+    //     console.log(OrderData)
+    // }
 
     useEffect(
         () => {
@@ -142,6 +141,7 @@ function Placeorder(props) {
                                                 margin="dense"
                                                 id="Phone"
                                                 label="Phone"
+                                                type="number"
                                                 name='Phone'
                                                 fullWidth
                                                 variant="standard"

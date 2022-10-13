@@ -88,7 +88,6 @@ function Cart(props) {
     return (
         <div className="container">
             <div className="row">
-
                 <div className='col-lg-6 mb-5 mt-5'>
 
                     {/* { placeorder ? */}
@@ -155,48 +154,51 @@ function Cart(props) {
                             </Form>
                         </Formik> */}
 
-                    :
-
-                    <table border="1px" cellPadding="20px" align='center'>
-                        <tbody>
-                            <tr align="center">
-                                <th>image</th>
-                                <th>productname</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                {/* <th>Total Export</th> */}
-                            </tr>
-                        </tbody>
-
-                        {
-                            filterdata.map((d) => {
-                                return (
+                    {/* : */}
+                    <div className="pricess">
+                        <div className='prices'>
+                            <table cellPadding="20px" align='center'>
+                                <tbody>
                                     <tr align="center">
-                                        <td><img src={d.url} alt="" width={100} /></td>
-                                        <td>{d.productname}</td>
-                                        <td>
-                                            <button className='btn' onClick={() => incrementcounters(d.id)}>+</button>
-                                            <p className='mb-0'>{d.Quantity}</p>
-                                            <button className='btn' onClick={() => decrementcounters(d.id)} disabled={d.Quantity === 1 && true}>-</button>
-                                        </td>
-                                        <td>{d.price * d.Quantity}</td>
-                                        <td className='deletecart' onClick={() => handleclickdelete(d.id)}>Delete</td>
+                                        <th>image</th>
+                                        <th>productname</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
+                                        {/* <th>Total Export</th> */}
                                     </tr>
+                                </tbody>
 
-                                )
-                            })
-                        }
-                    </table>
-                    {/* } */}
+                                {
+                                    filterdata.map((d) => {
+                                        return (
+                                            <tr align="center">
+                                                <td><img src={d.url} alt="" width={100} /></td>
+                                                <td>{d.productname}</td>
+                                                <td>
+                                                    <button className='btn' onClick={() => incrementcounters(d.id)}>+</button>
+                                                    <p className='mb-0'>{d.Quantity}</p>
+                                                    <button className='btn' onClick={() => decrementcounters(d.id)} disabled={d.Quantity === 1 && true}>-</button>
+                                                </td>
+                                                <td>{d.price * d.Quantity}</td>
+                                                <td className='deletecart' onClick={() => handleclickdelete(d.id)}>Delete</td>
+                                            </tr>
 
-                    <div className="place-order">
-                        {/* <button onClick={heandleplaceorder}>Place Order</button> */}
-                        <NavLink to={{
-                            pathname: '/Placeorder',
-                            state: { cart: filterdata }
-                        }}>
-                            Place Order
-                        </NavLink>
+                                        )
+                                    })
+                                }
+                            </table>
+                        </div>
+                        {/* } */}
+
+                        <div className="place-order">
+                            {/* <button onClick={heandleplaceorder}>Place Order</button> */}
+                            <NavLink to={{
+                                pathname: '/Placeorder',
+                                state: { cart: filterdata }
+                            }}>
+                                Place Order
+                            </NavLink>
+                        </div>
                     </div>
                 </div>
                 <div className="col-lg-6 mb-5 mt-5 p-2">
