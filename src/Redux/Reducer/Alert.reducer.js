@@ -19,6 +19,7 @@ export const alertreducer = (state = initialState, action) => {
                 text: '',
                 color: ''
             }
+
         default:
             return state
     }

@@ -11,10 +11,19 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addorder, getorder } from '../../Redux/Action/Order.action';
 import { useHistory } from 'react-router-dom';
 import { handleempty } from '../../Redux/Action/cart.action';
+import { useSnackbar } from 'notistack';
+import {  toast } from 'react-toastify';
+
+
 
 function Placeorder(props) {
     console.log(props.location.state);
+    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+   
     const [open, setOpen] = React.useState(false);
+
+    const alert = useSelector(state => state.alert)
+    console.log(alert);
     // const [data, setData] = useState([])
     const dispatch = useDispatch()
 
@@ -28,7 +37,7 @@ function Placeorder(props) {
 
 
     let product = {
-        name: yup.string().required('please enter name').matches(/[abcdefghijklmnopqrstuvwxyz]+/ , 'Is not in correct format'),
+        name: yup.string().required('please enter name').matches(/[abcdefghijklmnopqrstuvwxyz]+/, 'Is not in correct format'),
         email: yup.string().required('please enter email'),
         Phone: yup.string().required('please enter Phone').max(10, "Must be 10 digit number"),
         Address: yup.string().required('please enter Address').max(100, "Must be 100 digit number"),
@@ -43,24 +52,26 @@ function Placeorder(props) {
             Phone: '',
             Address: '',
         },
-        validationSchema: schema,   
+        validationSchema: schema,
         onSubmit: (value, { resetForm }) => {
             console.log(value)
             let OrderData = {
                 ...value,
                 cart: props.location.state.cart
             }
+
             console.log("OrderData", OrderData)
             // dispatch(addorder(OrderData))
             // setOpen(false);
             dispatch(addorder(OrderData))
             // handleSubmitdata(OrderData)
-            history.push('/Home');
+            toast.success("Your order is successfully");
             dispatch(handleempty())
+            history.push('/Home');
             resetForm();
         }
     })
-    
+
     // const handleSubmitdata = (OrderData) => {
     //     console.log(OrderData)
     // }
@@ -101,6 +112,9 @@ function Placeorder(props) {
     // const DeliveryCharges = Math.round(TotalAmount + 0.05);
     const FinalAmount = TotalAmount - Discount;
 
+    const handleClick = () => {
+        enqueueSnackbar('Thank you', "/Home");
+    };
 
     return (
         <>
@@ -209,6 +223,7 @@ function Placeorder(props) {
                             </div>
                         </div>
                     </div>
+                   
                 </div>
             </div>
         </>

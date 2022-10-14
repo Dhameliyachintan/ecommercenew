@@ -113,7 +113,7 @@ function Home(props) {
                                     </div>
                                     <div className="col-md-6">
                                         <div className="img-box">
-                                            <img src="images/big-billion-day.webp" alt width={100} />
+                                            <img src="images/product-38.png" alt width={100} />
                                         </div>
                                     </div>
                                 </div>

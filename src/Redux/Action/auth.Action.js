@@ -43,4 +43,3 @@ export const FacebookLogin = () => (dispatch) => {
 export const forgetActionpassword = (data) => (dispatch) => {
     dispatch({ type: ActionTypes.FORGET_PASSWORD_USER, payload: data })
 }
-

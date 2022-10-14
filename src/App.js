@@ -24,6 +24,9 @@ import Productdetails from './admin/container/Productdetails';
 import Category from './admin/container/Category';
 import Placeorder from './admin/container/Placeorder';
 import Cart from './admin/container/Cart';
+import AppRoute from './container/Route/AppRoute';
+import 'react-toastify/dist/ReactToastify.css';
+import { ToastContainer } from 'react-toastify';
 
 
 function App() {
@@ -34,26 +37,24 @@ function App() {
       <PersistGate loading={null} persistor={persistor}>
         <SnackbarProvider maxSnack={3}>
           <Provider store={store}>
-            <Header />
-            <Switch>
-              <PublicRoute exact path={"/Home"} component={Home} />
-              <PublicRoute exact path={"/About"} component={About} />
-              <PrivateRoute exact path={"/Testimonial"} component={Testimonial} />
-              <PublicRoute exact path={"/Product"} component={Product} />
-              <PublicRoute exact path={"/Why"} component={Why} />
-              <PublicRoute restricted={true} exact path={"/Logins"} component={Logins} />
-              <PublicRoute exact path={"/Category"} component={Category} />
-              <PublicRoute exact path={"/Categoriesadmin"} component={Categoriesadmin} />
-              <PublicRoute exact path={"/Productadmin"} component={Productadmin} />
-              <PublicRoute exact path={"/Productdetails"} component={Productdetails} />
-              <PublicRoute exact path={"/Cart"} component={Cart} />
-              <PublicRoute exact path={"/Placeorder"} component={Placeorder} />
-              <PublicRoute exact path={"/Orderadmin"} component={Orderadmin} />
-            </Switch>
+            <AppRoute />
           </Provider>
-          <Footer />
         </SnackbarProvider>
       </PersistGate>
+      <ToastContainer
+                        position="top-right"
+                        autoClose={5000}
+                        hideProgressBar={false}
+                        newestOnTop={false}
+                        closeOnClick
+                        rtl={false}
+                        pauseOnFocusLoss
+                        draggable
+                        pauseOnHover
+                        theme="light"
+                    />
+                    {/* Same as */}
+                    <ToastContainer />
       <div lensStyle={{
         background: 'hsla(0, 0%, 100%, .3)',
         border: '1px solid #ccc',

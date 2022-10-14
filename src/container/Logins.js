@@ -1,39 +1,43 @@
+
+
 import React, { useState } from 'react';
 import * as yup from 'yup';
-import { useDispatch } from 'react-redux';
 import { Form, Formik, useFormik } from 'formik';
+import { useDispatch } from 'react-redux';
 import { FacebookLogin, forgetActionpassword, googleActionLogin, LoginAction, signupAction } from '../Redux/Action/auth.Action';
 
 function Logins(props) {
     const [userType, setUserType] = useState('Login')
-    const [reset, setReset] = useState([])
+    const [reset, setReset] = useState(false)
+
     const dispatch = useDispatch()
 
-
-    const handleLogin = (values) => {
+    const handletLogin = (values) => {
         // alert(JSON.stringify(values, null, 2));
-        sessionStorage.setItem("user", "1234567")
+        // sessionStorage.setItem("user", "1234567")
         dispatch(LoginAction(values))
+
     }
 
-    const handleActionlogin = () => {
-        // alert(JSON.stringify(values, null, 2));
-        dispatch(googleActionLogin())
-    }
+    const handleSignup = (values) => {
 
+        // const data = JSON.parse(localStorage.getItem("users"));
 
-    const handlesignup = (values) => {
-        // let localdata = JSON.parse(localStorage.getItem("Logins"))
-        // console.log(localdata);
+        // console.log(data);
 
-        // if (localdata == null) {
-        //     localStorage.setItem("Logins", JSON.stringify([values]))
+        // if (data === null) {
+        //     localStorage.setItem("users", JSON.stringify([values]));
         // } else {
-        //     localdata.push(values);
-        //     localStorage.setItem("Logins", JSON.stringify(localdata));
+        //     data.push(values);
+        //     localStorage.setItem("users", JSON.stringify(data));
         // }
+
         dispatch(signupAction(values))
 
+        // data.push(values);
+        // console.log(data);
+        // localStorage.setItem("users", JSON.stringify(values));
+        // alert(JSON.stringify(values, null, 2));
     }
 
     let Login = {
@@ -46,27 +50,14 @@ function Logins(props) {
         email: yup.string().required('enter email').email('enter valid email'),
         password: yup.string().required('please enter password'),
     }
-
     let Password = {
         email: yup.string().required('enter email').email('enter valid email')
     }
 
 
-    const handlepassword = (values) => {
-        // alert(JSON.stringify(values.email));
-        dispatch(forgetActionpassword(values))
-    }
+    let schema, initVal;
 
-
-    const handleActionfacebook = (values) => {
-        // alert(JSON.stringify(values.email));
-        dispatch(FacebookLogin(values))
-    }
-
-
-    let schema, initVal
-
-
+    console.log(reset);
     if (userType === "Login" && !reset) {
         schema = yup.object().shape(Login);
         initVal = {
@@ -88,40 +79,55 @@ function Logins(props) {
         }
     }
 
+
+    const handleActionlogin = () => {
+        // alert(JSON.stringify(values, null, 2));
+        dispatch(googleActionLogin())
+    }
+
+    const handlepassword = (values) => {
+        // alert(JSON.stringify(values.email));
+        dispatch(forgetActionpassword(values))
+    }
+
+    const handleActionfacebook = (values) => {
+        // alert(JSON.stringify(values.email));
+        dispatch(FacebookLogin(values))
+    }
+
+
     const formik = useFormik({
         initialValues: initVal,
         validationSchema: schema,
-        onSubmit: values => {
-            // alert(JSON.stringify(values, null, 2));
+        onSubmit: (values, { resetForm }) => {
             if (userType === "Login" && !reset) {
-                handleLogin(values)
+                handletLogin(values)
             } else if (userType === "Signup" && !reset) {
-                handlesignup(values)
+                handleSignup(values)
             } else if (reset) {
                 handlepassword(values)
             }
-
-        },
-    });
-
-
+            resetForm();
+        }
+    })
 
 
+    console.log(formik.errors);
 
     return (
-        <section>
+        <section id="appointment" className="appointment mt-5 mb-5">
             <div className="container">
-                <div className='section-title'>
-                    {
-                        reset ?
-                            <h2 className='center'>Reset Password</h2> :
-                            userType === 'Login' ? <h2 className='center'>Login</h2> : <h2 className='center'>Signup</h2>
-                    }
-                </div>
-                <div className='php-email-form mt-5'>
+                <div className='php-email-form align-items-center justify-content-center d-flex'>
                     <Formik value={formik}>
                         <Form onSubmit={formik.handleSubmit}>
                             <div className='row align-items-center justify-content-center'>
+                                <div className='section-title'>
+                                    {
+                                        reset ?
+                                            <h2 className='text-center'>Reset Password</h2> :
+                                            userType === 'Login' ? <h2 className='text-center mb-3'>Login</h2> : <h2 className='text-center mb-3'>Signup</h2>
+                                    }
+                                </div>
                                 {
                                     userType === 'Login' ? null
                                         :
@@ -181,58 +187,60 @@ function Logins(props) {
                                             <div className="validate" />
                                         </div>
                                 }
-
                                 {
                                     reset ?
-                                        <div className="text-center">
-                                            <button type="submit">Forgot password</button>
+                                        <div className="text-center Forgot-password">
+                                            <button type="submit">Forgot password</button><br></br>
                                         </div>
                                         :
                                         userType === 'Login' ?
-                                            <div className="text-center">
-                                                <button type="submit">Login</button><br></br>
+                                            <div className="text-center Login-button">
+                                                <button type="submit" className='border-0'>Login</button><br></br>
                                             </div> :
-                                            <div className="text-center">
-                                                <button type="submit">signup</button>
+                                            <div className="text-center signup-button">
+                                                <button type="submit" className='border-0'>signup</button>
                                             </div>
                                 }
-
                                 {
                                     reset === true ?
                                         <div className='text-center mt-5'>
-                                            <span>already have an account ?</span>
-                                            <button onClick={() => setReset(false)}>Login</button>
+                                            <span className='text-dark'>already have an account ?</span>
+                                            <a onClick={() => setReset(false)}>Login</a>
                                         </div> :
                                         userType === 'Login' ?
                                             <div className='text-center mt-5'>
                                                 <span className='text-dark'>create a New account</span>
-                                                <button onClick={() => { setUserType('Signup') }} >signup</button> <br></br>
-                                                <button className='mt-3' onClick={() => setReset(true)}>Forget password</button>
+                                                <a onClick={() => { setUserType('Signup') }} >signup</a> <br></br>
+                                                <a className='mt-3' onClick={() => { setReset(true) }}>Forget password</a>
                                             </div> :
                                             <div className='text-center mt-5'>
                                                 <span className='text-dark'>already have an account ?</span>
-                                                <button onClick={() => setUserType('Login')} >Login</button>
+                                                <a onClick={() => { setUserType('Login') }} >Login</a>
                                             </div>
                                 }
                             </div>
-                            <div className='text-center'>
-                                <button onClick={() => handleActionlogin()} className="button-google">
-                                    <img src="images/google.png" alt="" width="40" /> Sign up google
-                                </button>
-                            </div>
-                            <div className='text-center'>
-                                <button onClick={() => handleActionfacebook()} className="button-facebook">
-                                    <img src="images/logo-facebookpng-32204.png" alt="" width="40" /> Sign with facebook
-                                </button>
+                            <div className="d-flex  justify-content-center">
+                                <div className='text-center mx-2'>
+                                    <button onClick={() => handleActionlogin()} className="button-google">
+                                        <img src="images/google.png" alt="" width="40" /> Sign up google
+                                    </button>
+                                </div>
+                                <div className='text-center'>
+                                    <button onClick={() => handleActionfacebook()} className="button-facebook">
+                                        <img src="images/logo-facebookpng-32204.png" alt="" /> Sign with facebook
+                                    </button>
+                                </div>
                             </div>
                         </Form>
                     </Formik>
+                    <div>
+                    </div>
                 </div>
             </div>
-        </section >
 
+
+        </section >
     );
 }
-
 
 export default Logins;

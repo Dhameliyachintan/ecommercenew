@@ -24,9 +24,9 @@ function* Login(action) {
         // console.log(action.payload);
         const user = yield call(LoginAPI, action.payload);    //request
         console.log(user);
-        history.push("/")
+        history.push("/Home")
         yield put(setalert({ text: "Login successfull", color: "Success" }))
-        yield put(Loggeduser(user))  // logout text lakayne ave 
+        yield put(Loggeduser(user.payload))  // logout text lakayne ave 
         // yield put(emailverify(user));
     } catch (e) {
         console.log(e);

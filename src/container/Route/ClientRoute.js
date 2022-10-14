@@ -3,25 +3,23 @@ import { useSelector } from 'react-redux';
 import { Redirect, Route } from 'react-router-dom';
 import Footer from '../../component/Footer/Footer';
 import Header from '../../component/Header/Header';
-import { isLogin } from '../Utils';
 
-function PublicRoute({ component: Component, restricted = false, ...rest }) {
-
+function ClientRoute({ component: Component, ...rest }) {
     let auth = useSelector(state => state.auth);
     console.log(auth.user);
-    
+
     return (
         <Route {...rest} render={props => (
-            isLogin() && restricted ?
+            auth.user !== null ?
                 <>
                     <Header />
-                    <Redirect to={"/"} />
+                    <Component {...props} />
                     <Footer />
                 </>
                 :
                 <>
                     <Header />
-                    <Component {...props} />
+                    <Redirect to={"/Logins"} />
                     <Footer />
                 </>
         )}
@@ -29,4 +27,4 @@ function PublicRoute({ component: Component, restricted = false, ...rest }) {
     );
 }
 
-export default PublicRoute;
+export default ClientRoute;
