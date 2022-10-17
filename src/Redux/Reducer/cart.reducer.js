@@ -36,6 +36,20 @@ export const cartreducers = (state = initialState, action) => {
                 cart: state.cart.filter((d) => d.id !== action.payload),
                 errors: ''
             }
+            case ActionTypes.EMPTY_CART_PRODUCT:
+            return {
+                ...state,
+                isLoading: false,
+                cart: [],
+                errors: ''
+            }
+        case ActionTypes.BUYNOW_CART_EMPTY:
+            return {
+                ...state,
+                isLoading: false,
+                cart: [],
+                errors: ''
+            }
         case ActionTypes.CART_INCREMENTCOUNTER: //3
             return {
                 ...state,
