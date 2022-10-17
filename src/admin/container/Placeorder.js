@@ -58,6 +58,7 @@ function Placeorder(props) {
             history.push('/Home');
             dispatch(handleempty())
             resetForm();
+            dispatch(buynoweempty())
         }
     })
     
