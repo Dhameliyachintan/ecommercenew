@@ -38,7 +38,7 @@ function Header(props) {
                         <div className="collapse navbar-collapse" id="navbarSupportedContent">
                             <ul className="navbar-nav ">
                                 <li className="nav-item active">
-                                    <NavLink exact to={"/Home"} className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></NavLink>
+                                    <NavLink exact to={"/"} className="nav-link" href="index.html">Home <span className="sr-only">(current)</span></NavLink>
                                     {/* <NavLink exact to={"/Home"} ClassName="nav-link scrollto active">Home</NavLink> */}
                                 </li>
                                 <li className="nav-item">

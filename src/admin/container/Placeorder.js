@@ -10,30 +10,86 @@ import { Form, Formik, useFormik } from 'formik';
 import { useDispatch, useSelector } from 'react-redux';
 import { addorder, getorder } from '../../Redux/Action/Order.action';
 import { useHistory } from 'react-router-dom';
-import { handleempty } from '../../Redux/Action/cart.action';
+import { buynoweempty, handleempty } from '../../Redux/Action/cart.action';
 import { useSnackbar } from 'notistack';
-import {  toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 
 
 
 function Placeorder(props) {
     console.log(props.location.state);
-    const { enqueueSnackbar, closeSnackbar } = useSnackbar();
-   
-    const [open, setOpen] = React.useState(false);
-
     const alert = useSelector(state => state.alert)
     console.log(alert);
     // const [data, setData] = useState([])
     const dispatch = useDispatch()
+    let cartData = [];
+    const BuyData = [];
 
     let history = useHistory();
 
     const cart = useSelector(state => state.cart)
-    console.log(cart);
+    console.log(cart.cart);
 
     const products = useSelector(state => state.product)
     console.log(products);
+
+    console.log("props.location.state.cart", props.location.state);
+
+
+    // const handleSubmitdata = (OrderData) => {
+    //     console.log(OrderData)
+    // }
+
+    useEffect(
+        () => {
+
+            dispatch(getorder())
+            if (props?.location?.state) {
+            }
+        },
+        [props?.location?.state])
+
+
+
+
+
+    products.product.map((p) => {
+        if (p.id === props?.location?.state?.id) {
+            let databuy = {
+                ...p,
+                Quantity: props.location.state.Quantity
+            }
+            BuyData.push(databuy);
+            console.log(databuy);
+        }
+    })
+
+
+    cart.cart.map((c) => {
+        products.product.map((p) => {
+            if (c.id === p.id) {
+                const data = {
+                    ...p,
+                    Quantity: c.Quantity
+                }
+                cartData.push(data);
+            }
+        })
+    })
+
+    var TotalBuymount = 0;
+    let Total = 0;
+
+    BuyData.map((c) => {
+        //console.log("11111111", parseInt(c.price), c.price, c.Quantity);
+        Total = c.Quantity * c.price;
+        TotalBuymount = TotalBuymount + Total;
+    })
+
+    const Discount = Math.round(TotalBuymount * 0.08);
+    const FinalAmountdata = TotalBuymount - Discount;
+    // const DeliveryCharges = Math.round(TotalAmount + 0.05);
+
 
 
     let product = {
@@ -54,67 +110,39 @@ function Placeorder(props) {
         },
         validationSchema: schema,
         onSubmit: (value, { resetForm }) => {
-            console.log(value)
-            let OrderData = {
-                ...value,
-                cart: props.location.state.cart
-            }
-
-            console.log("OrderData", OrderData)
-            // dispatch(addorder(OrderData))
-            // setOpen(false);
-            dispatch(addorder(OrderData))
-            // handleSubmitdata(OrderData)
-            toast.success("Your order is successfully");
-            dispatch(handleempty())
-            history.push('/Home');
-            resetForm();
-        }
-    })
-
-    // const handleSubmitdata = (OrderData) => {
-    //     console.log(OrderData)
-    // }
-
-    useEffect(
-        () => {
-
-            dispatch(getorder())
-        },
-        [])
-
-
-
-    let filterdata = [];
-
-    cart.cart.map((c) => {
-        products.product.map((p) => {
-            if (c.id === p.id) {
-                const data = {
-                    ...p,
-                    Quantity: c.Quantity
+            if (props?.location?.state) {
+                console.log(value)
+                let OrderData = {
+                    ...value,
+                    cartData
                 }
-                filterdata.push(data);
+
+                console.log("OrderData", OrderData)
+                // handleSubmitdata(OrderData)
+                dispatch(addorder(OrderData))
+                toast.success("Your order is successfully");
+                // dispatch(handleempty())
+                // resetForm();
+                // history.push('/');
+                // dispatch(buynoweempty())
+            } else {
+                console.log("Error");
+                let OrderData = {
+                    ...value,
+                    cartData
+                }
+                console.log("OrderData", OrderData)
+
+                // dispatch(addorder(OrderData))
+                toast.success("Your order is successfully");
+                // history.push('/');
+                // resetForm();
+                // dispatch(buynoweempty())
             }
-        })
-    })
+        }
 
-    var TotalAmount = 0;
-    let Total = 0;
-
-    filterdata.map((c) => {
-        //console.log("11111111", parseInt(c.price), c.price, c.Quantity);
-        Total = c.Quantity * c.price;
-        TotalAmount = TotalAmount + Total;
-    })
-
-    const Discount = Math.round(TotalAmount * 0.08);
-    // const DeliveryCharges = Math.round(TotalAmount + 0.05);
-    const FinalAmount = TotalAmount - Discount;
-
-    const handleClick = () => {
-        enqueueSnackbar('Thank you', "/Home");
-    };
+    }
+    )
 
     return (
         <>
@@ -198,7 +226,7 @@ function Placeorder(props) {
                                 <div className="total p-3">
                                     <div class="d-flex justify-content-between">
                                         <span class="prices-1 text-dark">Price ({cart.cart.length} item)</span>
-                                        <span className='text-dark'> {TotalAmount} </span>
+                                        <span className='text-dark'> {TotalBuymount} </span>
                                     </div>
                                 </div>
                                 <div className="total p-3">
@@ -215,15 +243,15 @@ function Placeorder(props) {
                                 </div>
                                 <div className="total p-3 border-bottom">
                                     <div class="d-flex justify-content-between">
-                                        <span class="prices-1 text-dark">TotalAmount</span>
-                                        <span className='text-dark'>{FinalAmount}</span>
+                                        <span class="prices-1 text-dark">TotalBmount</span>
+                                        <span className='text-dark'>{FinalAmountdata}</span>
                                     </div>
                                 </div>
                                 <p>You will save ₹{Discount} on this order</p>
                             </div>
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </>
@@ -232,3 +260,4 @@ function Placeorder(props) {
 }
 
 export default Placeorder;
+

@@ -4,7 +4,7 @@ import * as ActionTypes from "../ActionTypes"
 import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 export const getorder = (data) => async (dispatch) => {
-    console.log(data)
+    // console.log(data)
     try {
         let data = []
 

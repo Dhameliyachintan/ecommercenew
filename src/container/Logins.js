@@ -14,7 +14,7 @@ function Logins(props) {
 
     const handletLogin = (values) => {
         // alert(JSON.stringify(values, null, 2));
-        // sessionStorage.setItem("user", "1234567")
+        sessionStorage.setItem("user", "1234567")
         dispatch(LoginAction(values))
 
     }

@@ -3,24 +3,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { addproductdata, addtocart, cartgetproduct, } from '../Redux/Action/cart.action';
 
 function Product(props) {
-    const dispatch = useDispatch()
-    const [data, setData] = useState([])
-
-    // const carthandle = () => {
-    //      const data = {
-    //          name : "ProductName",
-    //          price : "300",
-    //          image : "images/p1.png"
-    //      }
-    //      dispatch(data)
-    // }
-    // const decrement = () => {
-    //     dispatch(removetocart())
-    // }
-
-    // const empty = () => {
-    //     dispatch(emptytocart())
-    // }
 
     return (
         <div>

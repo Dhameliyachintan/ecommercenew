@@ -1,52 +1,67 @@
-import *as ActionTypes from "../ActionTypes"
+import * as ActionTypes from '../ActionTypes'
 
-const initialState = {
-    isLoading: false,
+const initalState = {
+    isLoding: false,
     cart: [],
-    errors: ''
+    error: ''
 }
 
-export const cartreducers = (state = initialState, action) => {
-    console.log(action.type, action.payload);
+
+export const cartreducers = (state = initalState, action) => {
+    console.log(action.payload, action.type);
     switch (action.type) {
-        case ActionTypes.CARTADD_DATA: //2
-            const itemInCart = state.cart.find((item) => item.id === action.payload.id);
-            if (itemInCart) {
-                itemInCart.Quantity++;
-            } else {
-                state.cart.push(action.payload);
+        case ActionTypes.CARTADD_DATA:
+            const cartdata = state.cart.find((item) => item.id === action.payload.id)
+            if (cartdata) {
+                cartdata.Quantity++;
+            }
+            else {
+                state.cart.push(action.payload)
             }
             return {
                 ...state,
-                isLoading: false,
-                // cart: state.cart.concat(action.payload),
-                errors: ''
+                isLoding: false,
+                error: ''
             }
-        case ActionTypes.GET_TO_CART: //1
+        case ActionTypes.GET_TO_CART:
             return {
                 ...state,
-                isLoading: false,
-                cart: action.payload,
-                errors: ''
-            }
-        case ActionTypes.DELETE_CART_PRODUCT:
-            return {
-                ...state,
-                isLoading: false,
-                cart: state.cart.filter((d) => d.id !== action.payload),
-                errors: ''
+                isLoding: false,
+                error: ''
             }
         case ActionTypes.EMPTY_CART_PRODUCT:
             return {
                 ...state,
-                isLoading: false,
+                isLoding: false,
                 cart: [],
-                errors: ''
+                error: ''
             }
-        case ActionTypes.CART_INCREMENTCOUNTER: //3
+        case ActionTypes.BUYNOW_CART_EMPTY:
+            return {
+                ...state,
+                isLoding: false,
+                buy: [],
+                error: ''
+            }
+        case ActionTypes.BUY_NOW_DATA:
             return {
                 ...state,
                 isLoading: false,
+                cart: state.cart.concat((d) => d.id !== action.payload),
+                errors: ''
+            }
+
+        case ActionTypes.DELETE_CART_PRODUCT:
+            return {
+                ...state,
+                isLoding: false,
+                cart: state.cart.filter((d, i) => d.id !== action.payload),
+                error: ''
+            }
+        case ActionTypes.CART_INCREMENTCOUNTER:
+            return {
+                ...state,
+                isLoding: false,
                 cart: state.cart.map((c) => {
                     if (c.id === action.payload) {
                         return {
@@ -54,14 +69,15 @@ export const cartreducers = (state = initialState, action) => {
                             Quantity: c.Quantity + 1
                         }
                     } else {
-                        return c
+                        return c;
                     }
-                })
+                }),
+                error: ''
             }
-        case ActionTypes.CART_DECREMENTCOUNTER: //3
+        case ActionTypes.CART_DECREMENTCOUNTER:
             return {
                 ...state,
-                isLoading: false,
+                isLoding: false,
                 cart: state.cart.map((c) => {
                     if (c.id === action.payload) {
                         return {
@@ -69,16 +85,11 @@ export const cartreducers = (state = initialState, action) => {
                             Quantity: c.Quantity - 1
                         }
                     } else {
-                        return c
+                        return c;
                     }
-                })
+                }),
+                error: ''
             }
-
-        // case ActionTypes.EMPTY_TO_CART:
-        //     return {
-        //         ...state,
-        //         counter: []
-        //     }
         default:
             return state
     }

@@ -47,6 +47,7 @@ export const ADD_PRODUCT = "ADD_PRODUCT"
 export const UPDATE_PRODUCT = "UPDATE_PRODUCT"
 export const DELETE_PRODUCT = "DELETE_PRODUCT"
 export const EMPTY_CART_PRODUCT = "EMPTY_CART_PRODUCT"
+export const BUYNOW_CART_EMPTY = "BUYNOW_CART_EMPTY"
 
 // cartproduct
 
@@ -58,3 +59,5 @@ export const CARTADD_PRODUCT = "CARTADD_PRODUCT"
 export const ADD_ORDER = "ADD_ORDER"
 export const GET_ORDER = "GET_ORDER"
 export const ERROR_ORDER = "ERROR_ORDER"
+
+export const BUY_NOW_DATA = "BUY_NOW_DATA"

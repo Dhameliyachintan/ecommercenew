@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { addtocart } from '../../Redux/Action/cart.action';
+import { addtocart, buynowdata } from '../../Redux/Action/cart.action';
 import { useHistory } from 'react-router-dom';
+import { addorder, getorder } from '../../Redux/Action/Order.action';
 
 function Productdetails(props) {
     const [Quantity, setQuantity] = useState(1);
@@ -25,8 +26,20 @@ function Productdetails(props) {
         }
 
         dispatch(addtocart(carts))
-        history.push("/cart", d)
+        history.push("/Cart", d)
         console.log(d);
+    }
+
+
+    const buynow = (d) => {
+        console.log(d)
+        const buydata = {
+            id: d,
+            Quantity: Quantity
+        }
+        console.log(buydata);
+        // dispatch(buynowdata(buydata))
+        history.push("/Placeorder", buydata)
     }
 
 
@@ -58,7 +71,7 @@ function Productdetails(props) {
                                             <p className="product-price fw-bold mb-3">${val.price}</p>
                                             <p className="product-price mb-3">{val.desc}</p>
                                             <button href="#" className="btn btn-dark px-3" onClick={() => Addtocart(val)}>Add to cart</button>
-                                            <button href="#" className="btn btn-dark px-4 ms-3" >Buy Now</button>
+                                            <button href="#" className="btn btn-dark px-4 ms-3" onClick={() => buynow(val.id)} >Buy Now</button>
                                         </div>
                                     </div>
                                 </div>
@@ -72,7 +85,3 @@ function Productdetails(props) {
 }
 
 export default Productdetails;
-
-<script>
-
-</script>
