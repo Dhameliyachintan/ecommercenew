@@ -44,25 +44,26 @@ function Placeorder(props) {
         () => {
 
             dispatch(getorder())
-            if (props?.location?.state) {
+            if (props.location.state) {
             }
         },
-        [props?.location?.state])
+        [props.location.state])
 
 
 
 
 
     products.product.map((p) => {
-        if (p.id === props?.location?.state?.id) {
+        if (p.id === props.location.state.id) {
             let databuy = {
                 ...p,
                 Quantity: props.location.state.Quantity
             }
             BuyData.push(databuy);
-            console.log(databuy);
         }
     })
+
+    console.log(BuyData);
 
 
     cart.cart.map((c) => {
@@ -114,30 +115,28 @@ function Placeorder(props) {
                 console.log(value)
                 let OrderData = {
                     ...value,
-                    cartData
+                    cart: props.location.state.cart
                 }
 
                 console.log("OrderData", OrderData)
                 // handleSubmitdata(OrderData)
                 dispatch(addorder(OrderData))
                 toast.success("Your order is successfully");
-                // dispatch(handleempty())
-                // resetForm();
-                // history.push('/');
-                // dispatch(buynoweempty())
+                resetForm();
+                history.push('/');
+                dispatch(buynoweempty())
             } else {
                 console.log("Error");
                 let OrderData = {
                     ...value,
-                    cartData
+                    BuyData
                 }
                 console.log("OrderData", OrderData)
-
-                // dispatch(addorder(OrderData))
+                dispatch(addorder(OrderData))
                 toast.success("Your order is successfully");
-                // history.push('/');
-                // resetForm();
-                // dispatch(buynoweempty())
+                dispatch(handleempty())
+                history.push('/');
+                resetForm();
             }
         }
 

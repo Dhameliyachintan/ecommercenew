@@ -7,7 +7,7 @@ import { getproductdata } from '../../Redux/Action/Product.action';
 function Category(props) {
     // const [category, setCategory] = useState([])
     const [product, setProducts] = useState([])
-    const [filterdata, setfilterdata] = useState([])
+    const [filterdata, setfilterdata] = useState([]);
     const history = useHistory()
 
     const products = useSelector(state => state.product)
@@ -90,6 +90,23 @@ function Category(props) {
         history.push('/Productdetails', val)
     }
 
+    // const handleCatagory = (c) => {
+    //     let filter = [];
+    //     if (c === "All") {
+    //         setFilterDataPro([]);
+    //     }
+
+    //     products.product.filter((f) => {
+    //         if (c === f.product_list) {
+    //             filter.push(f);
+    //         }
+    //     })
+    //     setFilterDataPro(filter);
+    // };
+
+
+    // const finaldata = filterDataPro.length > 0 ? filterDataPro : products.product;
+
 
     return (
         <>
@@ -102,7 +119,7 @@ function Category(props) {
                         label='search'
                         variant='standard'
                         placeholder='search'
-                        onChange={(e) => { handleSearch(e.target.value) }}
+                    // onChange={(e) => { handleSearch(e.target.value) }}
                     />
                 </div>
                 <div className='row mt-5 mx-2 justify-content-center'>
@@ -116,6 +133,31 @@ function Category(props) {
                                 )
                             })}
                         </div>
+                        {/* <a href="#" onClick={(e) => handleCatagory("All")}>
+                            <div className='cat-view-box'>
+                                <div className='box-img cart-box-img'>
+                                    <img src="https://images.emojiterra.com/google/noto-emoji/v2.034/512px/1f6cd.png" />
+                                </div>
+                                <h4 className='cat-box-title pro-cart-tit'>All</h4>
+
+                            </div>
+                        </a> */}
+                        {/* {
+
+                            categorys.category.map((c) => {
+                                return (
+                                    <a href="#" onClick={(e) => handleCatagory(c.id)}>
+                                        <div className='cat-view-box'>
+
+                                            <div className='box-img'>
+                                                <img src={c.url} />
+                                            </div>
+                                            <h4 className='cat-box-title'>{c.categoryname}</h4>
+                                        </div>
+                                    </a>
+                                )
+                            })
+                        } */}
                     </div>
 
                     <div className="col-xl-12">

@@ -40,7 +40,7 @@ export const cartreducers = (state = initalState, action) => {
             return {
                 ...state,
                 isLoding: false,
-                buy: [],
+                cart: [],
                 error: ''
             }
         case ActionTypes.BUY_NOW_DATA:

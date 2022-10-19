@@ -16,7 +16,7 @@ function Orderadmin(props) {
         () => {
 
             dispatch(getorder())
-            dispatch(addorder())
+            // dispatch(addorder())x    
         },
         [])
 
@@ -44,13 +44,14 @@ function Orderadmin(props) {
                                 <thead>
                                     <tr>
                                         <th>Productname</th>
-                                        <th>Quantity</th>
+                                        <th>price</th>
+                                        <th>categories</th>
                                         <th>Image</th>
                                     </tr>
                                 </thead>
                                 <tbody>
                                     {
-                                        o.cart.map((d) => {
+                                        o.cart.cart.map((d) => {
                                             return (
                                                 <>
                                                     <tr>

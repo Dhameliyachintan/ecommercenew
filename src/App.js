@@ -26,6 +26,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import { ToastContainer } from 'react-toastify';
 import Placeorder from './admin/container/Placeorder';
 import Orderadmin from './admin/componente/Orderadmin';
+import AppRoute from './container/Route/AppRoute';
 
 
 function App() {
@@ -37,7 +38,8 @@ function App() {
         <SnackbarProvider maxSnack={3}>
           <Provider store={store}>
             <Header />
-            <Switch>
+            <AppRoute/>
+            {/* <Switch>
               <PublicRoute exact path={"/"} component={Home} />
               <PublicRoute exact path={"/About"} component={About} />
               <PrivateRoute exact path={"/Testimonial"} component={Testimonial} />
@@ -51,7 +53,7 @@ function App() {
               <PublicRoute exact path={"/Placeorder"} component={Placeorder} />
               <PublicRoute exact path={"/Cart"} component={Cart} />
               <PublicRoute exact path={"/Orderadmin"} component={Orderadmin} />
-            </Switch>
+            </Switch> */}
           </Provider>
           <Footer />
         </SnackbarProvider>
