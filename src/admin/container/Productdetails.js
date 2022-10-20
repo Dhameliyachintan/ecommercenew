@@ -5,17 +5,15 @@ import { useHistory } from 'react-router-dom';
 import { addorder, getorder } from '../../Redux/Action/Order.action';
 
 function Productdetails(props) {
+    const [page, setpage] = useState(props.location.state)
     const [Quantity, setQuantity] = useState(1);
     const dispatch = useDispatch()
     const productval = [props.location.state]
-    console.log(productval);
     const history = useHistory()
 
     const cart = useSelector(state => state.cart)
-    console.log(cart.cart);
 
     const counters = useSelector(state => state.counter)
-    console.log(counters);
 
 
     const Addtocart = (d) => {
@@ -35,7 +33,8 @@ function Productdetails(props) {
         console.log(d)
         const buydata = {
             id: d,
-            Quantity: Quantity
+            Quantity: Quantity,
+            search: "Buy"
         }
         console.log(buydata);
         // dispatch(buynowdata(buydata))

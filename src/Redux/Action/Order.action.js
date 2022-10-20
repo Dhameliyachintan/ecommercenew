@@ -13,7 +13,7 @@ export const getorder = (data) => async (dispatch) => {
             data.push({ id: doc.id, ...doc.data() })
         })
 
-        dispatch({ type: ActionTypes.GET_ORDER, payload: data })
+        dispatch({ type: ActionTypes.GET_ORDER, payload: data })    
 
     } catch (error) {
         dispatch(errororder(error))
@@ -22,7 +22,7 @@ export const getorder = (data) => async (dispatch) => {
 }
 
 export const addorder = (OrderData) => async (dispatch) => {
-    console.log(OrderData);
+    console.log("OrderData", OrderData);
     try {
         const ordersRef = await addDoc(collection(db, "order"), OrderData)
         dispatch({ type: ActionTypes.ADD_ORDER, payload: ordersRef })

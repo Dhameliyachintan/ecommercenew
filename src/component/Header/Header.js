@@ -92,7 +92,7 @@ function Header(props) {
                                     auth.user === null ?
                                         <li className="nav-item">
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
-                                            <NavLink exact to={"/Logins"} className="nav-link" href="Loginss.html">Logins</NavLink>
+                                            <NavLink exact to={"/Logins"} className="nav-link" href="Loginss.html">Login / Sign up</NavLink>
                                         </li> :
                                         <li className="nav-item">
                                             {/* <a className="nav-link" href="testimonial.html">Testimonial</a> */}
@@ -101,7 +101,7 @@ function Header(props) {
                                 }
                             </ul>
                             <button type="button" class="btn btn-primary position-relative">
-                                <a href="/Cart" className='text-white'><i className="fa fa-shopping-cart" aria-hidden="true" /></a>
+                                <NavLink exact to="/Cart" className='text-white'><i className="fa fa-shopping-cart" aria-hidden="true" /></NavLink>
                                 <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">
                                     {cartitem}
                                 </span>

@@ -54,7 +54,7 @@ function Placeorder(props) {
 
 
     products.product.map((p) => {
-        if (p.id === props.location.state.id) {
+        if (p.id === props?.location?.state?.id) {
             let databuy = {
                 ...p,
                 Quantity: props.location.state.Quantity
@@ -63,7 +63,7 @@ function Placeorder(props) {
         }
     })
 
-    console.log(BuyData);
+    console.log("props.location.state", props.location);
 
 
     cart.cart.map((c) => {
@@ -111,11 +111,11 @@ function Placeorder(props) {
         },
         validationSchema: schema,
         onSubmit: (value, { resetForm }) => {
-            if (props?.location?.state) {
+            if (props.location.state.search === "Buy") {
                 console.log(value)
                 let OrderData = {
                     ...value,
-                    cart: props.location.state.cart
+                    cartData : BuyData
                 }
 
                 console.log("OrderData", OrderData)
@@ -129,7 +129,7 @@ function Placeorder(props) {
                 console.log("Error");
                 let OrderData = {
                     ...value,
-                    BuyData
+                    cartData
                 }
                 console.log("OrderData", OrderData)
                 dispatch(addorder(OrderData))

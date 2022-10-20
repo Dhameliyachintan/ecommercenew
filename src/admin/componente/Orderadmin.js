@@ -35,6 +35,7 @@ function Orderadmin(props) {
 
                 {
                     order.order.map((o) => {
+                        console.log(o);
                         return (
                             <tr align="center">
                                 <td>{o.name}</td>
@@ -51,7 +52,7 @@ function Orderadmin(props) {
                                 </thead>
                                 <tbody>
                                     {
-                                        o.cart.cart.map((d) => {
+                                        o.cartData.map((d) => {
                                             return (
                                                 <>
                                                     <tr>

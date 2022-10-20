@@ -46,7 +46,6 @@ function Logins(props) {
     }
 
     let Signup = {
-        name: yup.string().required('please enter name'),
         email: yup.string().required('enter email').email('enter valid email'),
         password: yup.string().required('please enter password'),
     }
@@ -67,7 +66,6 @@ function Logins(props) {
     } else if (userType === "Signup" && !reset) {
         schema = yup.object().shape(Signup);
         initVal = {
-            name: '',
             email: '',
             password: ''
         }
@@ -128,27 +126,6 @@ function Logins(props) {
                                             userType === 'Login' ? <h2 className='text-center mb-3'>Login</h2> : <h2 className='text-center mb-3'>Signup</h2>
                                     }
                                 </div>
-                                {
-                                    userType === 'Login' ? null
-                                        :
-                                        <div className="col-md-7 form-group">
-                                            <input
-                                                type="text"
-                                                name="name"
-                                                className="form-control"
-                                                id="name"
-                                                placeholder="Your Name"
-                                                onChange={formik.handleChange}
-                                                value={formik.values.name}
-                                                onBlur={formik.handleBlur}
-                                            />
-                                            {
-                                                formik.errors.name && formik.touched.name ? <p>{formik.errors.name}</p> : ''
-                                            }
-
-                                            <div className="validate" />
-                                        </div>
-                                }
                                 <div className="col-md-7 form-group mt-3 mt-md-0">
                                     <input
                                         type="text"

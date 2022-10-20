@@ -14,7 +14,7 @@ function ClientRoute({ component: Component, ...rest }) {
                 </>
                 :
                 <>
-                    <Redirect to={"/Logins"} />
+                <Redirect to={"/Logins"} />
                 </>
         )}
         />

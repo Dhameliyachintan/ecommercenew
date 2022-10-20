@@ -6,6 +6,7 @@ import { isLogin } from '../Utils';
 function PrivateRoute({ component: Component, ...rest }) {
     const auth = useSelector(state => state.auth)
     console.log(auth.user);
+    
     return (
         <Route {...rest} render={props => (
             auth.user !== null && auth.user.role === 'admin' ?

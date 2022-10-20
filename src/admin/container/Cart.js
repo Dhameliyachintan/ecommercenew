@@ -17,6 +17,7 @@ import { addorder, getorder } from '../../Redux/Action/Order.action';
 function Cart(props) {
     // console.log(props.location.state);
     const [placeorder, setplaceorder] = useState(false)
+    const [page, setpage] = useState(true)
     const [button, setbutton] = useState(false)
     const dispatch = useDispatch()
 
@@ -200,6 +201,15 @@ function Cart(props) {
                                 Place Order
                             </NavLink>
                         </div>
+
+                        {/* <div className="place-order">
+                            <NavLink to={{
+                                pathname: '/Placeorder',
+                                state: { cart: page }
+                            }}>
+                                Place Order
+                            </NavLink>
+                        </div> */}
                     </div>
                 </div>
                 <div className="col-lg-6 mb-5 mt-5 p-2">
